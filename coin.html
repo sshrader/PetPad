@@ -221,7 +221,7 @@ td .mini>div{height:100%;background:var(--gold)}
         mission.orbit=new window.Mission.Orbit($('orbit'),{ship:shipId,look:look,logo:logo});mission.orbit.start();
         var draw=function(){window.Mission.drawPatch($('patch'),{sym:j.symbol,name:j.name,call:look&&look.call,agent:j.agent&&j.agent.name,role:j.agent&&j.agent.role,face:face,ship:shipId,look:look,logo:logo,mint:mint})};
         logo.onload=draw;face.onload=draw;draw();
-        $('pdl').addEventListener('click',function(){try{$('patch').toBlob(function(b){var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='launchbay-'+String(j.symbol).toLowerCase()+'-patch.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);$('pmsg').textContent='Saved. Attach it to your post.'})}catch(e){$('pmsg').textContent='Could not make the image in this browser.'}});
+        $('pdl').addEventListener('click',function(){try{$('patch').toBlob(function(b){var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='petpad-'+String(j.symbol).toLowerCase()+'-patch.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);$('pmsg').textContent='Saved. Attach it to your post.'})}catch(e){$('pmsg').textContent='Could not make the image in this browser.'}});
         var txt='$'+j.symbol+' just launched on PetPad'+(look&&look.call?' with callsign '+look.call:'')+'. Mission patch attached.',url=location.origin+'/coin/'+mint;
         $('ptw').href='https://x.com/intent/post?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(url);
       }
