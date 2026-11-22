@@ -1,5 +1,5 @@
 'use strict';
-// PetPad: anyone can launch a pump.fun coin. Each launch claims one of a small set of pilots as its logo,
+// PetPaws: anyone can launch a pump.fun coin. Each launch claims one of a small set of pilots as its logo,
 // and that agent is then locked to the coin. The launcher signs everything from their own wallet.
 const http = require('http');
 const fs = require('fs');
@@ -93,7 +93,7 @@ function verifySignature(wallet, message, sigB64) {
 
 const challenges = new Map();
 function challengeMessage(wallet, nonce, expires) {
-  return 'PetPad Launch\nSign to prove you own this wallet. This sends no transaction and costs nothing.\nWallet: ' + wallet + '\nNonce: ' + nonce + '\nExpires: ' + new Date(expires).toISOString();
+  return 'PetPaws Launch\nSign to prove you own this wallet. This sends no transaction and costs nothing.\nWallet: ' + wallet + '\nNonce: ' + nonce + '\nExpires: ' + new Date(expires).toISOString();
 }
 
 const hits = new Map();
@@ -247,7 +247,7 @@ async function reserve(req, res) {
   let slot;
   if (body.slot === 'founder') {
     // The Founder bear is not in the numbered set. Only FOUNDER_WALLET can take it, and only once per network.
-    if (!c.founderWallet || wallet !== c.founderWallet) { saveBears(c, d); return send(res, 403, { error: 'That agent is reserved for the PetPad founder.' }); }
+    if (!c.founderWallet || wallet !== c.founderWallet) { saveBears(c, d); return send(res, 403, { error: 'That agent is reserved for the PetPaws founder.' }); }
     if (d.launched.F) { saveBears(c, d); return send(res, 409, { error: 'The founder coin has already been launched.' }); }
     if (d.holds.F) { saveBears(c, d); return send(res, 409, { error: 'The flagship is being launched right now.' }); }
     slot = 'F';
@@ -400,7 +400,7 @@ async function coinInfo(res, mint, fast) {
   const c = cfg();
   if (!B58_RE.test(mint)) return send(res, 404, { error: 'No such coin.' });
   const f = findLaunched(c, mint);
-  if (!f) return send(res, 404, { error: 'That coin was not launched from PetPad.' });
+  if (!f) return send(res, 404, { error: 'That coin was not launched from PetPaws.' });
   const key = c.cluster + ':' + mint, hit = coinCache.get(key);
   let onchain;
   if (hit && Date.now() - hit.at < 45000) onchain = hit.data;
@@ -631,5 +631,5 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-if (require.main === module) server.listen(PORT, '0.0.0.0', () => console.log('PetPad listening on ' + PORT + ', data in ' + DATA_DIR));
+if (require.main === module) server.listen(PORT, '0.0.0.0', () => console.log('PetPaws listening on ' + PORT + ', data in ' + DATA_DIR));
 module.exports = server;

@@ -1,5 +1,5 @@
 'use strict';
-// PetPad's moving backdrops, plain 2D canvas, in a cosy shelter style: a dusk sky, drifting clouds, hills, little hearts and paw prints.
+// PetPaws's moving backdrops, plain 2D canvas, in a cosy shelter style: a dusk sky, drifting clouds, hills, little hearts and paw prints.
 // GridBg is the quiet scene behind the pages; GridIntro is the loading-screen style intro with the shelter, four pets in round frames
 // and a ride that rolls to a new home. Both stop when the page is hidden and respect reduced motion. Everything is original art drawn in code.
 (function (root) {

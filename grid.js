@@ -1,5 +1,5 @@
 'use strict';
-// The pets for PetPad: eight original space pets (dogs and cats) drawn as 48 x 48 portraits behind a helmet visor, plus a one-of-one flagship, Titan.
+// The pets for PetPaws: eight original shelter pets (dogs and cats) drawn as 48 x 48 adoption portraits, plus a one-of-one flagship, Titan.
 // Everything is drawn here with a tiny rasterizer and a PNG encoder: no libraries, no image files.
 const crypto = require('crypto');
 const { encodePng } = require('./isorender');

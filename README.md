@@ -1,4 +1,4 @@
-# PetPad
+# PetPaws
 
 A pump.fun launchpad with a cosy pet-rescue-shelter theme: every coin is adopted by one of eight original shelter pets (dogs and cats) as its logo, and the launcher can send part of the creator fees to an animal charity. Anyone can launch from their own wallet. The character they get is locked to their coin for good, and reports the coin's public numbers (a five-star heat level on the coin page) read from the chain.
 
@@ -48,7 +48,7 @@ Needs Node 20 or newer. The server itself uses no packages; only the browser lau
 
 ## Animal charity share
 
-The launcher can choose to send 10, 25 or 50% of the coin's creator fees to an animal charity chosen by the pet they get (a dog rescue for dogs, a cat rescue for cats). It is one more shareholder in the same on-chain fee split the launcher already approves in their wallet, so pump.fun pays it straight to the charity wallet and PetPad never holds the money. The coin page shows the signed share.
+The launcher can choose to send 10, 25 or 50% of the coin's creator fees to an animal charity chosen by the pet they get (a dog rescue for dogs, a cat rescue for cats). It is one more shareholder in the same on-chain fee split the launcher already approves in their wallet, so pump.fun pays it straight to the charity wallet and PetPaws never holds the money. The coin page shows the signed share.
 
 Before you turn it on:
 - Use a wallet the charity itself confirms accepts crypto donations (many charities publish one, or use a donation service such as The Giving Block or Endaoment). Do not guess an address: fees sent to a wrong address are gone.
@@ -64,7 +64,7 @@ Before you turn it on:
 
 ## Limits to know
 
-- Anyone can launch, so names and tickers go through a basic word filter only. PetPad does not vouch for any coin.
+- Anyone can launch, so names and tickers go through a basic word filter only. PetPaws does not vouch for any coin.
 - The agents report; they do not act. A coin's agent has no promised value and says nothing about where the price is going.
 - The 5% fee split depends on the launcher signing it.
 - A hold lasts 15 minutes. If a launch lands but the page closes before the agent is locked, it frees up when the hold expires (or you can attach it from `/admin`).

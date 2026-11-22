@@ -1,5 +1,5 @@
 'use strict';
-// PetPad's rides: six original little vehicles drawn in code on a 2D canvas, side view, facing right, origin at the middle.
+// PetPaws's rides: six original little vehicles drawn in code on a 2D canvas, side view, facing right, origin at the middle.
 // The launch form lets you pick one; the coin page shows it; a short adoption-day scene plays after a launch.
 // This file runs in the browser (window.Ships) and in Node (the server only needs the list of ids and the colour lists).
 (function (root) {

@@ -1,5 +1,5 @@
 'use strict';
-// PetPad's coin-page extras, plain 2D canvas: the adoption journey (how far the coin has travelled along its bonding curve) and the adoption certificate
+// PetPaws's coin-page extras, plain 2D canvas: the adoption journey (how far the coin has travelled along its bonding curve) and the adoption certificate
 // (a card with the pet, the ride, the ticker and the name tag, to download and share). Original art.
 (function (root) {
   var CY = '#ffc46b', VI = '#ff8a7a', MG = '#ff6f8a', AM = '#ffd98a';
@@ -62,7 +62,7 @@
     // paw prints in the corners
     ctx.fillStyle = 'rgba(138,69,96,.14)'; [[110, 120], [890, 120], [110, 880], [890, 880]].forEach(function (p) { ctx.beginPath(); ctx.ellipse(p[0], p[1] + 10, 30, 24, 0, 0, 7); ctx.fill(); [[-26, -26], [-9, -40], [9, -40], [26, -26]].forEach(function (q) { ctx.beginPath(); ctx.ellipse(p[0] + q[0], p[1] + q[1], 9, 12, 0, 0, 7); ctx.fill(); }); });
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#8a4560'; ctx.font = '700 46px "Space Grotesk", Inter, sans-serif'; ctx.fillText('CERTIFICATE OF ADOPTION', C, 122);
-    ctx.fillStyle = '#b8603a'; ctx.font = '500 24px Inter, sans-serif'; ctx.fillText('This pet found its forever home on PetPad', C, 166);
+    ctx.fillStyle = '#b8603a'; ctx.font = '500 24px Inter, sans-serif'; ctx.fillText('This pet found its forever home on PetPaws', C, 166);
     // the pet's portrait in a round frame
     var fr = 158, fx = C, fy = 350;
     ctx.save(); ctx.beginPath(); ctx.arc(fx, fy, fr, 0, 7); ctx.clip(); if (o.face && o.face.complete && o.face.naturalWidth) ctx.drawImage(o.face, fx - fr, fy - fr, fr * 2, fr * 2); else { ctx.fillStyle = '#4a3550'; ctx.fillRect(fx - fr, fy - fr, fr * 2, fr * 2); } ctx.restore();
@@ -74,7 +74,7 @@
     ctx.fillStyle = '#8a4560'; ctx.font = '700 40px Inter, sans-serif'; ctx.fillText(('$' + (o.sym || '')).toUpperCase() + '  ·  ' + String(o.name || '').slice(0, 22), C, 700);
     root.Ships.draw(ctx, o.ship, C, 836, 1.15, 0, 1.2, o.look, o.logo, o.face);
     ctx.fillStyle = '#b8603a'; ctx.font = '500 22px Inter, sans-serif';
-    ctx.fillText(o.charity ? 'Helping ' + o.charity : 'petpad · pump.fun', C, 940);
+    ctx.fillText(o.charity ? 'Helping ' + o.charity : 'petpaws · pump.fun', C, 940);
   }
   root.Mission = { Orbit: Orbit, drawPatch: drawPatch, stageName: stageName };
 })(window);

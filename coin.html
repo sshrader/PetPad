@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <link rel="icon" href="/favicon.svg?v=5" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<title>Coin · PetPad</title>
+<title>Coin · PetPaws</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -93,11 +93,11 @@ td .mini>div{height:100%;background:var(--gold)}
 <div class="veil" aria-hidden="true"></div>
 <div class="wrap">
 <header>
-  <a class="logo" href="/">PetPad<span class="net" id="net">devnet</span></a>
+  <a class="logo" href="/">PetPaws<span class="net" id="net">devnet</span></a>
   <a class="back" href="/">← All friends</a>
 </header>
 
-<div id="err" class="panel"><b>That coin is not in PetPad.</b><p class="note">Only coins launched here have a page. <a href="/">Back to the grid</a>.</p></div>
+<div id="err" class="panel"><b>That coin is not in PetPaws.</b><p class="note">Only coins launched here have a page. <a href="/">Back to the grid</a>.</p></div>
 
 <div id="page" hidden>
   <section class="hero">
@@ -143,7 +143,7 @@ td .mini>div{height:100%;background:var(--gold)}
   <h2>Dev and launch</h2>
   <div class="panel"><dl class="kv" id="dev"></dl></div>
 
-  <p class="fine" id="finenote">Numbers are read from the chain and refresh every minute. They describe this coin now and do not predict anything. A coin can lose all of its value, and its character has no promised value. The agent only reads and reports public numbers: it does not trade, hold funds or predict anything. PetPad does not vouch for any coin launched here. Nothing here is financial advice.</p>
+  <p class="fine" id="finenote">Numbers are read from the chain and refresh every minute. They describe this coin now and do not predict anything. A coin can lose all of its value, and its character has no promised value. The agent only reads and reports public numbers: it does not trade, hold funds or predict anything. PetPaws does not vouch for any coin launched here. Nothing here is financial advice.</p>
 </div>
 </div>
 
@@ -167,7 +167,7 @@ td .mini>div{height:100%;background:var(--gold)}
 
   function draw(j){
     var main=j.cluster==='mainnet',oc=j.onchain||{},cv=oc.curve;
-    document.title=j.name+' ($'+j.symbol+') · PetPad';
+    document.title=j.name+' ($'+j.symbol+') · PetPaws';
     if(j.quote){var fn=document.getElementById('finenote');if(fn)fn.textContent+=' This coin is priced in another coin ('+(j.quote==='SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb'?'SpaceX, SPCX':j.quote.slice(0,4)+'…'+j.quote.slice(-4))+'), not SOL, so the SOL figures above do not apply to it.'}
     var n=$('net');n.textContent=main?'mainnet':'devnet · test';n.className='net'+(main?' main':'');
     $('pic').src=j.bear==='F'?'/api/founder.png?v=pets':'/api/preview/'+j.bear+'.png?v=pets';$('pic').alt=j.name;
@@ -221,8 +221,8 @@ td .mini>div{height:100%;background:var(--gold)}
         mission.orbit=new window.Mission.Orbit($('orbit'),{ship:shipId,look:look,logo:logo,face:face});mission.orbit.start();
         var draw=function(){window.Mission.drawPatch($('patch'),{sym:j.symbol,name:j.name,breed:j.agent&&j.agent.breed,charity:j.charity&&j.charity.name,call:look&&look.call,agent:j.agent&&j.agent.name,role:j.agent&&j.agent.role,face:face,ship:shipId,look:look,logo:logo,mint:mint})};
         logo.onload=draw;face.onload=draw;draw();
-        $('pdl').addEventListener('click',function(){try{$('patch').toBlob(function(b){var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='petpad-'+String(j.symbol).toLowerCase()+'-adoption.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);$('pmsg').textContent='Saved. Attach it to your post.'})}catch(e){$('pmsg').textContent='Could not make the image in this browser.'}});
-        var txt='$'+j.symbol+' just launched on PetPad'+(look&&look.call?' with the name tag '+look.call:'')+'. Adoption certificate attached.',url=location.origin+'/coin/'+mint;
+        $('pdl').addEventListener('click',function(){try{$('patch').toBlob(function(b){var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='petpaws-'+String(j.symbol).toLowerCase()+'-adoption.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);$('pmsg').textContent='Saved. Attach it to your post.'})}catch(e){$('pmsg').textContent='Could not make the image in this browser.'}});
+        var txt='$'+j.symbol+' just launched on PetPaws'+(look&&look.call?' with the name tag '+look.call:'')+'. Adoption certificate attached.',url=location.origin+'/coin/'+mint;
         $('ptw').href='https://x.com/intent/post?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(url);
       }
       mission.orbit.set(cv?cv.progress:0,done);
@@ -248,8 +248,8 @@ td .mini>div{height:100%;background:var(--gold)}
     row('Dev holding',function(dd){dd.textContent=oc.devHoldPct==null?'not read':pct(oc.devHoldPct)+' of supply'});
     row('Launched',function(dd){dd.textContent=new Date(j.launchedAt).toLocaleString()});
     row('Launch transaction',function(dd){var a=el('a',null,j.signature.slice(0,8)+'…');a.href='https://explorer.solana.com/tx/'+j.signature+(main?'':'?cluster=devnet');a.target='_blank';a.rel='noopener';dd.appendChild(a)});
-    row('Creator fee split',function(dd){var cp=j.charity?j.charity.bps/100:0,pp=j.platformBps?j.platformBps/100:0;dd.textContent=j.founder?'Founder coin: all creator fees go to the founder wallet':(j.feeSplit&&(pp||cp))?'Signed: '+(100-pp-cp)+'% to the dev'+(pp?', '+pp+'% to PetPad':'')+(cp?', '+cp+'% to the animal charity':''):j.platformBps?'Not signed by the dev. All creator fees go to the dev.':'All creator fees go to the dev'});
-    if(j.charity){row('Animal charity',function(dd){var a=el('a',null,j.charity.name);if(j.charity.url){a.href=j.charity.url;a.target='_blank';a.rel='noopener'}dd.appendChild(a);dd.appendChild(document.createTextNode(' · '+(j.charity.bps/100)+'% of creator fees, signed in the fee split to '+short(j.charity.wallet)+'. Paid by pump.fun to that wallet, not held by PetPad.'))})}
+    row('Creator fee split',function(dd){var cp=j.charity?j.charity.bps/100:0,pp=j.platformBps?j.platformBps/100:0;dd.textContent=j.founder?'Founder coin: all creator fees go to the founder wallet':(j.feeSplit&&(pp||cp))?'Signed: '+(100-pp-cp)+'% to the dev'+(pp?', '+pp+'% to PetPaws':'')+(cp?', '+cp+'% to the animal charity':''):j.platformBps?'Not signed by the dev. All creator fees go to the dev.':'All creator fees go to the dev'});
+    if(j.charity){row('Animal charity',function(dd){var a=el('a',null,j.charity.name);if(j.charity.url){a.href=j.charity.url;a.target='_blank';a.rel='noopener'}dd.appendChild(a);dd.appendChild(document.createTextNode(' · '+(j.charity.bps/100)+'% of creator fees, signed in the fee split to '+short(j.charity.wallet)+'. Paid by pump.fun to that wallet, not held by PetPaws.'))})}
     row('Mint',function(dd){dd.textContent=j.mint});
     $('page').hidden=false;
   }
