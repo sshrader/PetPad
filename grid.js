@@ -37,9 +37,9 @@ const SPECIES = {
     coat('Orange tabby', ['#ee9a4a', '#c8702a'], '#f8e6cc', '#b8581e', '#7ac84a', '#f2f4fa', '#9d7bff'), coat('Grey tabby', ['#9a9ca8', '#6a6c78'], '#e8e8ee', '#4a4c58', '#e8c23a', '#7fb4e8', '#ffffff'),
     coat('Brown tabby', ['#8a6a48', '#5a4028'], '#e6d4b8', '#3a2818', '#7ac84a', '#e89ac8', '#ffffff'), coat('Calico', ['#f6f2ee', '#d8d0c8'], '#ffffff', '#e8964a', '#7ac84a', '#9ac84a', '#2a2a34')]) },
 };
-const ACCS = [['none', 20], ['collar', 18], ['bandana', 16], ['bowtie', 12], ['bell', 12], ['flower', 10], ['sunnies', 12]];
+const ACCS = [['none', 22], ['bandana', 16], ['bowtie', 12], ['bell', 12], ['flower', 10], ['sunnies', 12], ['partyhat', 10]];
 const ACC_COL = ['#ff5d7a', '#4de3ff', '#ffd98a', '#9d7bff', '#7cf0a8', '#ff9a5c', '#ffffff'];
-const BGS = ['#070b1f', '#0d0a26', '#060f22', '#12091f'];
+const BGS = ['#4a3550', '#2f4a56', '#58402f', '#2f5248'];
 const NAMES = ['MOCHI', 'BISCUIT', 'NUGGET', 'WAFFLES', 'PICKLES', 'MAPLE', 'TOFU', 'BEANS', 'ZIGGY', 'PEANUT', 'BUTTONS', 'CHEWY', 'MISO', 'OREO', 'PIXEL', 'TAKO', 'KIWI', 'DONUT', 'COOKIE', 'SPROUT', 'MOCHA', 'BAGEL', 'TURNIP', 'NOODLE', 'PRETZEL', 'SUSHI', 'MUFFIN', 'GIZMO', 'BISCOTTI', 'CUPCAKE', 'ROCKET', 'COMET', 'LUNA', 'ORBIT', 'STARLA', 'PLUTO', 'NEBULA', 'PIPPIN', 'BOLT', 'SNICKERS'];
 
 // ---- classes: each is an ability that works from real chain numbers (fn names the report in report.js) ----
@@ -268,49 +268,50 @@ function petHead(c, kind, P) {
 }
 function accessory(c, acc, col) {
   const cc = typeof col === 'string' ? col : '#ff5d7a', k = hx(cc);
-  if (acc === 'collar' || acc === 'bell') { c.curve([[15.6, 30.4], [24, 33.8], [32.4, 30.4]], 2.2, k, 0.95); c.curve([[15.6, 30], [24, 33.4], [32.4, 30]], 0.4, [255, 255, 255], 0.3); c.ell(24, 34.4, acc === 'bell' ? 1.5 : 1.1, acc === 'bell' ? 1.5 : 1.1, '#ffd98a'); if (acc === 'bell') c.line(24, 33.8, 24, 35.4, 0.3, '#8a6a20'); }
-  else if (acc === 'bandana') { c.poly([[15, 30], [33, 30], [24, 38]], k, 0.98, true); c.line(15, 30, 33, 30, 0.5, dk(k, 0.7)); for (const p of [[21, 32], [24, 33.6], [27, 32], [24, 31.4]]) c.ell(p[0], p[1], 0.38, 0.38, '#ffffff', 0.8); }
-  else if (acc === 'bowtie') { c.poly([[24, 33], [19.6, 30.4], [19.6, 35.6]], k, 1, false); c.poly([[24, 33], [28.4, 30.4], [28.4, 35.6]], k, 1, false); c.ell(24, 33, 1.2, 1.4, dk(k, 0.75)); }
+  if (acc === 'bell') { c.ell(21, 37.6, 1.7, 1.7, '#ffd98a'); c.line(21, 36, 21, 37.6, 0.3, '#8a6a20'); c.ell(20.4, 37, 0.5, 0.5, '#ffffff', 0.7); }
+  else if (acc === 'bandana') { c.poly([[15, 31.4], [33, 31.4], [24, 40]], k, 0.98, true); c.line(15, 31.4, 33, 31.4, 0.5, dk(k, 0.7)); for (const p of [[21, 33.4], [24, 35.2], [27, 33.4], [24, 32.8]]) c.ell(p[0], p[1], 0.38, 0.38, '#ffffff', 0.8); }
+  else if (acc === 'bowtie') { c.poly([[24, 38.8], [19.6, 36.2], [19.6, 41.4]], k, 1, false); c.poly([[24, 38.8], [28.4, 36.2], [28.4, 41.4]], k, 1, false); c.ell(24, 38.8, 1.2, 1.4, dk(k, 0.75)); }
+  else if (acc === 'partyhat') { c.poly([[19.6, 11.2], [28.4, 11.2], [24, 0.8]], k, 1, false); for (const p of [[22.6, 8], [25.4, 6.4], [24, 3.8]]) c.ell(p[0], p[1], 0.6, 0.6, '#ffffff', 0.85); c.ell(24, 1, 1.4, 1.4, '#ffffff'); }
   else if (acc === 'flower') { for (let i = 0; i < 5; i++) { const a = i * Math.PI * 2 / 5; c.ell(31.6 + Math.cos(a) * 1.7, 11.8 + Math.sin(a) * 1.7, 1.2, 1.2, k, 0.97); } c.ell(31.6, 11.8, 1, 1, '#ffe27a'); }
   else if (acc === 'sunnies') { for (const cx of [19, 29]) c.poly([[cx - 3.6, 17.6], [cx + 3.6, 17.6], [cx + 3.1, 21.8], [cx, 22.6], [cx - 3.1, 21.8]], (x, y) => mix([14, 14, 24], [64, 66, 92], clamp((y - 17.6) / 5 + (x - cx) * 0.04, 0, 1)), 0.97, true); c.line(22.4, 18.4, 25.6, 18.4, 0.4, '#15151f'); c.soft(18, 18.6, 1.6, 0.7, [255, 255, 255], 0.35); c.soft(28, 18.6, 1.6, 0.7, [255, 255, 255], 0.35); }
 }
-// the little space helmet and suit around the pet
+// a pet sitting for its adoption portrait: chest, front paws, a collar with a heart tag, then the head
 function astro(c, L, P, kind, ex) {
   ex = ex || {};
-  const suit = hx(L.suit), trim = hx(L.trim), glass = hx(L.glass || '#a8e8ff'), shell = ex.shell ? hx(ex.shell) : [226, 230, 244];
-  torso(c, L.suit, {});
-  c.poly([[18, 41], [30, 41], [29.4, 47.8], [18.6, 47.8]], dk(suit, 0.66), 1, true); c.rect(19.6, 42.4, 2.2, 1.3, trim); c.ell(24.4, 43.1, 0.8, 0.8, '#4de3ff'); c.ell(26.9, 43.1, 0.8, 0.8, '#ff4fd8');
-  c.line(11.6, 40.4, 12.6, 48, 1.5, trim, 0.9); c.line(36.4, 40.4, 35.4, 48, 1.5, trim, 0.9);
-  c.ell(24, 20.6, 17.4, 17.6, (x, y) => mix([40, 44, 78], [8, 10, 24], clamp((y - 6) / 30, 0, 1)));
+  const fur = [hx(P.fur[0]), hx(P.fur[1])], mask = hx(P.mask), col = hx(L.suit);
+  const fc = (x, y) => mix(fur[0], fur[1], clamp(0.35 + (x - 24) * 0.03 + (y - 40) * 0.02, 0, 1));
+  c.soft(24, 47, 20, 4, [0, 0, 0], 0.3);
+  c.poly(spline([[8, 48], [9.6, 40], [14, 34], [24, 31], [34, 34], [38.4, 40], [40, 48]], true), fc);
+  c.ell(24, 42.6, 7.6, 7, mask, 0.9);
+  for (const sx of [-1, 1]) { c.ell(24 + sx * 7.6, 47, 4.2, 2.8, fc); c.ell(24 + sx * 7.6, 47, 3, 1.8, mask, 0.9); for (const d of [-1.2, 0, 1.2]) c.line(24 + sx * 7.6 + d, 46.2, 24 + sx * 7.6 + d, 48, 0.2, dk(fur[1], 0.7), 0.6); }
+  c.soft(24, 33.6, 8, 1.6, [0, 0, 0], 0.28);
   petHead(c, kind, P);
+  // collar and tag
+  c.curve([[14.6, 30.8], [24, 34.4], [33.4, 30.8]], 2.3, col, 0.98); c.curve([[14.6, 30.2], [24, 33.8], [33.4, 30.2]], 0.4, [255, 255, 255], 0.3);
+  c.ell(24, 36, 2, 2, '#ffd98a'); c.ell(24, 36, 1.5, 1.5, '#f0b84a');
+  c.poly([[24, 37.3], [22.7, 35.9], [23.3, 35.1], [24, 35.7], [24.7, 35.1], [25.3, 35.9]], '#c8383f', 1, false);
   if (ex.accessory) ex.accessory(c);
-  c.ell(24, 20.6, 15.3, 15.5, glass, ex.tint || 0.1);
-  c.soft(19, 13.4, 5.4, 3, [255, 255, 255], 0.24);
-  c.poly([[15.4, 20], [16.6, 14.4], [19.8, 10.6], [19, 14.6], [17.4, 20.4]], [255, 255, 255], 0.24);
-  c.poly([[31.6, 27], [32.8, 23.6], [33.6, 25]], [255, 255, 255], 0.2);
-  c.curve(circ(24, 20.6, 16.3), 2.5, (x, y) => mix(lt(shell, 0.2), dk(shell, 0.62), clamp((x - 10) / 28 + (y - 6) / 30, 0, 1)));
-  c.curve(circ(24, 20.6, 15), 0.45, [10, 12, 30], 0.55); c.curve(circ(24, 20.6, 17.4), 0.4, [255, 255, 255], 0.3);
-  c.soft(24, 38, 11, 2, [0, 0, 0], 0.28);
-  c.ell(24, 37.4, 12.6, 2.9, (x, y) => mix(lt(shell, 0.1), dk(shell, 0.6), clamp((x - 11) / 26, 0, 1))); c.ell(24, 36.9, 10.4, 1.7, dk(shell, 0.5)); c.curve([[12, 37.6], [24, 40.6], [36, 37.6]], 0.5, trim, 0.9);
   if (ex.post) ex.post(c);
 }
-// Titan: the flagship. A big golden Akita in a gold-trimmed white suit, with a little crown on the helmet
+// Titan: the flagship. A big golden Akita in a gold collar and a little crown
 function titan(c) {
-  const L = { suit: '#f3f4fa', trim: '#e8b82e', glass: '#ffd98a' };
+  const L = { suit: '#e8b82e' };
   const P = { fur: ['#f0c070', '#c8903a'], mask: '#fff6e2', mark: '#ffffff', eye: '#2a1a12' };
-  astro(c, L, P, 'akita', { tint: 0.2, shell: '#f0d98a', post(c) {
+  astro(c, L, P, 'akita', { post(c) {
     c.poly([[17.4, 9.6], [18.6, 4.8], [21.2, 7.4], [24, 3.4], [26.8, 7.4], [29.4, 4.8], [30.6, 9.6]], '#e8b82e', 1, false); c.line(17.4, 9.8, 30.6, 9.8, 0.7, '#fff0a8'); c.ell(24, 6.8, 0.8, 0.8, '#c8383f'); c.soft(24, 6, 6, 3.4, [255, 217, 138], 0.32);
-    c.ell(10.2, 38.4, 3.4, 1.6, hx('#e8b82e')); c.ell(37.8, 38.4, 3.4, 1.6, hx('#e8b82e')); } });
+    c.ell(24, 36, 2.6, 2.6, '#fff0a8'); c.ell(24, 36, 1.8, 1.8, '#e8b82e'); } });
 }
-
 
 function bgFor(c, bgIdx, seed) {
   const b = hx(BGS[bgIdx]);
-  c.rect(0, 0, N, N, (x, y) => mix(lt(b, 0.04), dk(b, 0.6), clamp(y / 48 * 0.8 + (x - 24) * 0.01, 0, 1)));
-  c.soft(10, 40, 22, 14, [157, 123, 255], 0.1); c.soft(40, 8, 16, 10, [77, 227, 255], 0.07);
-  for (let i = 0; i < 46; i++) { const h1 = hash(i + 1, (seed % 997) + 3), h2 = hash(i + 91, (seed % 991) + 7), r = 0.12 + hash(i, 5) * 0.2; c.ell(h1 * N, h2 * N, r, r, i % 7 === 0 ? '#bfe6ff' : '#ffffff', 0.35 + hash(i, 9) * 0.6); }
-  const pc = [[[255, 190, 130], [190, 90, 80]], [[200, 170, 255], [100, 70, 210]], [[150, 230, 255], [60, 130, 210]]][seed % 3];
-  c.ell(41.5, 9.5, 4.6, 4.6, (x, y) => mix(pc[0], dk(pc[1], 0.6), clamp(((x - 39) + (y - 7)) / 9, 0, 1)));
+  c.rect(0, 0, N, N, (x, y) => mix(lt(b, 0.12), dk(b, 0.72), clamp(y / 48 * 0.9, 0, 1)));
+  c.rect(0, 40, N, 8, dk(b, 0.55));
+  c.soft(24, 20, 26, 22, [255, 214, 150], 0.14);
+  // a window with a warm light, hearts and paw prints on the wall
+  c.rect(31, 5, 12, 14, [255, 232, 180], 0.25); c.rect(31.6, 5.6, 10.8, 12.8, [255, 232, 180], 0.18); c.line(37, 5, 37, 19, 0.5, dk(b, 0.5), 0.6); c.line(31, 12, 43, 12, 0.5, dk(b, 0.5), 0.6);
+  const pc = [[255, 160, 150], [255, 214, 140], [190, 230, 200], [200, 180, 255]][seed % 4];
+  for (let i = 0; i < 5; i++) { const x = 5 + hash(i + 3, seed % 97) * 18, y = 6 + hash(i + 11, seed % 89) * 26, r = 0.9 + hash(i, 4) * 0.7;
+    c.ell(x, y + r * 0.5, r, r * 0.8, pc, 0.2); for (const [dx, dy] of [[-1.1, -0.9], [-0.4, -1.5], [0.4, -1.5], [1.1, -0.9]]) c.ell(x + dx * r, y + dy * r, r * 0.34, r * 0.4, pc, 0.2); }
 }
 function paint(slot, secret, opts) {
   const t = traitsFor(slot, secret), sp = SPECIES[t.species], L = Object.assign({}, sp.looks[t.look]);

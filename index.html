@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#05060f;--surface:rgba(10,13,34,.9);--surface2:#0f1330;--line:#2b3166;--fg:#eef2ff;--dim:#aab6e8;--ember:#ff9a5c;--gold:#9d7bff;--good:#4de3ff;--sun:#ffd98a;--bad:#ff5d7a;
+:root{--bg:#1b1220;--surface:rgba(42,28,48,.9);--surface2:#2a1c34;--line:#5a3a58;--fg:#fff4de;--dim:#e0c8d0;--ember:#ff9a5c;--gold:#ff8a7a;--good:#ffc46b;--sun:#ffd98a;--bad:#ff5d7a;
 --display:'Space Grotesk','Inter',system-ui,sans-serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -19,7 +19,7 @@ padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(
 /* the dark control-room grid behind the page */
 #bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;image-rendering:pixelated;opacity:.8;pointer-events:none}
 [hidden]{display:none!important}
-.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(4,4,6,.6) 0%,rgba(4,4,6,.3) 45%,rgba(4,4,6,.08) 100%)}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(27,18,32,.6) 0%,rgba(27,18,32,.3) 45%,rgba(27,18,32,.08) 100%)}
 .wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding-block:28px 160px}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:400;font-size:32px;letter-spacing:.04em;line-height:1}
@@ -41,7 +41,7 @@ h2{font-family:var(--display);font-weight:400;font-size:38px;letter-spacing:.03e
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:16px}
 .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .btn{font:700 15px var(--sans);border-radius:99px;padding:12px 22px;border:1px solid var(--line);background:var(--surface2);color:var(--fg);cursor:pointer}
-.btn.go{background:var(--gold);color:#05060f;border:0}
+.btn.go{background:var(--gold);color:#1b1220;border:0}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 label{display:block;font:600 13px var(--sans);color:var(--dim);margin-bottom:4px}
 label .rv{font-weight:400;opacity:.8;margin-left:6px}
@@ -53,7 +53,7 @@ textarea{min-height:72px;resize:vertical}
 @media(max-width:760px){.bears{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .bear{position:relative;background:#1a1626;border:0;border-bottom:5px solid var(--line);border-radius:10px;padding:0 0 12px;display:grid;gap:4px;justify-items:start;text-align:left;min-width:0;font:inherit;color:#f1e8d4;cursor:pointer;overflow:hidden}
 .bear::before{content:'ON PAD';position:absolute;left:10px;top:8px;z-index:1;font:400 22px var(--display);letter-spacing:.08em;color:#ff9a5c;text-shadow:0 1px 0 #000}
-.bear.launched::before{content:'IN ORBIT';color:#4de3ff}.bear.held::before{content:'FUELING';color:#ffd98a}
+.bear.launched::before{content:'IN ORBIT';color:#ffc46b}.bear.held::before{content:'FUELING';color:#ffd98a}
 .bear img{width:100%;height:auto;aspect-ratio:1;border-radius:0;display:block}
 .bear b{font-family:var(--mono);font-weight:400;font-size:17px;overflow-wrap:anywhere;padding:0 12px}
 .bear.launched{text-decoration:none;color:inherit}
@@ -62,11 +62,11 @@ a.bear.launched:hover,a.bear.launched:focus-visible{border-color:var(--gold)}
 .bear small{font:400 13px var(--mono);color:#cdc3e8;overflow-wrap:anywhere;padding:0 12px}
 .bear.launched small{color:var(--gold)}
 .bear.open:hover{border-color:var(--gold)}
-.bear.sel{border-color:var(--gold);box-shadow:0 0 0 2px rgba(157,123,255,.25)}
+.bear.sel{border-color:var(--gold);box-shadow:0 0 0 2px rgba(255,138,122,.25)}
 .bear.held{cursor:default}
 .bear.held img,.bear.held canvas{filter:grayscale(.85) brightness(.55)}
 .facts{font:500 13px var(--mono);color:var(--dim)}
-.founder{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:24px;align-items:center;margin-top:6px;background:var(--surface);border:2px solid var(--gold);border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 0 0 3px rgba(157,123,255,.12)}
+.founder{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:24px;align-items:center;margin-top:6px;background:var(--surface);border:2px solid var(--gold);border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 0 0 3px rgba(255,138,122,.12)}
 @media(max-width:560px){.founder{grid-template-columns:minmax(0,1fr);justify-items:start}.founder img{max-width:240px}}
 .founder img{width:100%;height:auto;aspect-ratio:1;border-radius:8px;display:block}
 .founder .tag{font:600 13px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--gold)}
@@ -74,7 +74,7 @@ a.bear.launched:hover,a.bear.launched:focus-visible{border-color:var(--gold)}
 .founder p{margin:0 0 10px;color:var(--dim);font-size:14px;max-width:54ch}
 .founder a.btn{text-decoration:none;display:inline-block}
 .openmenu{display:inline-block;position:relative;margin:10px 0 0 12px;vertical-align:middle}
-.openmenu summary{list-style:none;cursor:pointer;font:700 14px var(--sans);background:var(--gold);color:#05060f;border-radius:99px;padding:8px 16px}
+.openmenu summary{list-style:none;cursor:pointer;font:700 14px var(--sans);background:var(--gold);color:#1b1220;border-radius:99px;padding:8px 16px}
 .openmenu summary::-webkit-details-marker{display:none}.openmenu summary::after{content:' ▾'}
 .openlist{position:absolute;z-index:5;left:0;top:calc(100% + 6px);min-width:240px;display:grid;background:var(--surface2);border:1px solid var(--line);border-radius:10px;overflow:hidden}
 .openlist a{padding:11px 14px;color:var(--fg);text-decoration:none;font-size:14px}.openlist a:hover,.openlist a:focus-visible{background:var(--line)}
@@ -84,7 +84,7 @@ a.bear.launched:hover,a.bear.launched:focus-visible{border-color:var(--gold)}
 .recent img{width:36px;height:36px;border-radius:50%;flex:none}
 .recent b{font-weight:800;font-size:14px;display:block;line-height:1.2;overflow-wrap:anywhere}
 .recent small{font:500 13px var(--mono);color:var(--dim)}
-.feerow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#05060f}
+.feerow{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#1b1220}
 .feerow span{font-size:14px;overflow-wrap:anywhere}
 .msg{font-size:14px;min-height:1.4em}.msg.err{color:var(--bad)}.msg.ok{color:var(--good)}
 .log{font:500 13px var(--mono);display:grid;gap:4px;overflow-wrap:anywhere}
@@ -104,45 +104,45 @@ footer button{background:none;border:0;color:var(--gold);font:inherit;cursor:poi
 #splash.out{opacity:0;pointer-events:none}
 #splash canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
 #splash{align-items:flex-end;justify-content:flex-start}
-#splash .cap{position:relative;text-align:center;margin:0 0 max(5vh,24px) max(16px,4vw);text-align:left;padding:22px 26px 24px;max-width:min(92vw,640px);color:#fff;background:linear-gradient(rgba(3,4,14,.88),rgba(3,4,14,.78));border:1px solid rgba(157,123,255,.35);border-radius:16px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 8px 40px rgba(0,0,0,.6);animation:rise 2.4s ease both}
+#splash .cap{position:relative;text-align:center;margin:0 0 max(5vh,24px) max(16px,4vw);text-align:left;padding:22px 26px 24px;max-width:min(92vw,640px);color:#fff;background:linear-gradient(rgba(27,18,32,.88),rgba(27,18,32,.78));border:1px solid rgba(255,138,122,.35);border-radius:16px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 8px 40px rgba(0,0,0,.6);animation:rise 2.4s ease both}
 #splash .cap h2{text-shadow:0 2px 6px #000;font-family:var(--display);font-weight:700;font-size:clamp(34px,9vw,72px);margin:0 0 6px;letter-spacing:.02em}
 #splash .cap p{margin:0 0 14px;color:#fff;font-size:18px;font-weight:500;text-shadow:0 1px 3px #000}
-#splash .cap button{font:700 16px var(--sans);border-radius:99px;padding:11px 26px;border:1px solid #9d7bff;background:#0a0d22;color:#fff;cursor:pointer}
-#splash .slog{position:absolute;left:max(16px,4vw);top:max(16px,5vh);font:500 15px/1.5 var(--mono);color:#fff;text-shadow:0 1px 3px #000,0 0 8px #000;background:rgba(3,4,14,.82);border:1px solid rgba(157,123,255,.3);border-radius:10px;padding:10px 14px;white-space:pre;pointer-events:none;text-align:left;max-width:calc(100vw - 32px);overflow:hidden}
+#splash .cap button{font:700 16px var(--sans);border-radius:99px;padding:11px 26px;border:1px solid #ff8a7a;background:#2a1c30;color:#fff;cursor:pointer}
+#splash .slog{position:absolute;left:max(16px,4vw);top:max(16px,5vh);font:500 15px/1.5 var(--mono);color:#fff;text-shadow:0 1px 3px #000,0 0 8px #000;background:rgba(27,18,32,.82);border:1px solid rgba(255,138,122,.3);border-radius:10px;padding:10px 14px;white-space:pre;pointer-events:none;text-align:left;max-width:calc(100vw - 32px);overflow:hidden}
 #splash .slog:empty{display:none}
 
-/* Deep-space look: night sky, a violet-to-cyan glow, a mission strip and a status readout */
+/* Shelter look: warm evening colours, a soft amber glow, a desk strip and a status readout */
 .hud{display:flex;align-items:center;gap:10px;margin-left:12px}
-.hud .stars{display:inline-flex;gap:3px;color:var(--good);font-size:9px;line-height:1;text-shadow:0 0 8px rgba(77,227,255,.7)}
+.hud .stars{display:inline-flex;gap:3px;color:var(--good);font-size:9px;line-height:1;text-shadow:0 0 8px rgba(255,196,107,.7)}
 .hud small{font:500 11px var(--mono);letter-spacing:.16em;color:var(--dim)}
 .mission{display:inline-flex;align-items:center;gap:10px;margin:36px 0 -22px;font:600 13px var(--mono);letter-spacing:.24em;color:var(--good)}
 .mission::before{content:'';width:34px;height:2px;background:linear-gradient(90deg,var(--good),var(--gold));box-shadow:0 0 10px var(--good)}
-h1{letter-spacing:-.01em;font-weight:700;text-shadow:0 0 36px rgba(157,123,255,.35)}
-h1 span{background:linear-gradient(90deg,#4de3ff 0%,#9d7bff 55%,#ff4fd8 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
-h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shadow:0 0 18px rgba(157,123,255,.3)}
-.btn.go,.openmenu summary,#splash .cap button{background:linear-gradient(90deg,#4de3ff,#9d7bff);color:#05060f;border:0;box-shadow:0 0 20px rgba(120,140,255,.4)}
+h1{letter-spacing:-.01em;font-weight:700;text-shadow:0 0 36px rgba(255,138,122,.35)}
+h1 span{background:linear-gradient(90deg,#ffc46b 0%,#ff8a7a 55%,#ff6f8a 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none}
+h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shadow:0 0 18px rgba(255,138,122,.3)}
+.btn.go,.openmenu summary,#splash .cap button{background:linear-gradient(90deg,#ffc46b,#ff8a7a);color:#1b1220;border:0;box-shadow:0 0 20px rgba(255,138,122,.4)}
 .btn,.wallet,.openmenu summary{border-radius:10px}
 .panel,.founder,.result,.recent a{border-radius:14px}
-.founder{border:1px solid transparent;border-radius:16px;background:linear-gradient(135deg,rgba(14,18,48,.95),rgba(8,10,30,.95)) padding-box,linear-gradient(135deg,#4de3ff,#9d7bff,#ff4fd8) border-box;box-shadow:0 0 40px rgba(120,100,255,.2)}
+.founder{border:1px solid transparent;border-radius:16px;background:linear-gradient(135deg,rgba(14,18,48,.95),rgba(8,10,30,.95)) padding-box,linear-gradient(135deg,#ffc46b,#ff8a7a,#ff6f8a) border-box;box-shadow:0 0 40px rgba(255,138,122,.2)}
 .founder .tag{color:var(--sun)}
 .bear{border-radius:10px;box-shadow:0 6px 18px rgba(0,0,0,.45)}
-.bear.sel{box-shadow:0 0 0 2px var(--good),0 0 22px rgba(77,227,255,.4)}
-.radio{position:relative;z-index:1;overflow:hidden;margin:16px 0 0;border:1px solid var(--line);background:rgba(5,6,15,.8);border-radius:10px;font:400 13px var(--mono);color:var(--dim);white-space:nowrap}
+.bear.sel{box-shadow:0 0 0 2px var(--good),0 0 22px rgba(255,196,107,.4)}
+.radio{position:relative;z-index:1;overflow:hidden;margin:16px 0 0;border:1px solid var(--line);background:rgba(27,18,32,.8);border-radius:10px;font:400 13px var(--mono);color:var(--dim);white-space:nowrap}
 .radio b{color:var(--good);font-weight:500;letter-spacing:.12em}
 .radio span{display:inline-block;padding:7px 0;padding-left:100%;animation:radio 44s linear infinite}
 @keyframes radio{to{transform:translateX(-100%)}}
 @media(prefers-reduced-motion:reduce){.radio span{animation:none;padding-left:12px}}
-#splash .cap{background:linear-gradient(rgba(5,6,18,.86),rgba(12,10,40,.8));border:1px solid rgba(157,123,255,.55);border-radius:16px;box-shadow:0 0 50px rgba(120,100,255,.28)}
-#splash .cap h2{transform:none;border:0;padding:0;font-size:clamp(34px,6vw,56px);text-shadow:0 0 28px rgba(157,123,255,.7)}
-#splash .cap p{color:#dfe6ff}
-#splash .slog{border-color:rgba(77,227,255,.4);background:rgba(5,6,18,.82)}
+#splash .cap{background:linear-gradient(rgba(27,18,32,.86),rgba(42,28,48,.8));border:1px solid rgba(255,138,122,.55);border-radius:16px;box-shadow:0 0 50px rgba(255,138,122,.28)}
+#splash .cap h2{transform:none;border:0;padding:0;font-size:clamp(34px,6vw,56px);text-shadow:0 0 28px rgba(255,138,122,.7)}
+#splash .cap p{color:#fff4de}
+#splash .slog{border-color:rgba(255,196,107,.4);background:rgba(27,18,32,.82)}
 .ships{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-top:6px}
 .ship{background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:6px 6px 10px;text-align:center;cursor:pointer;color:var(--fg);font:inherit;appearance:none}
 .ship canvas{display:block;width:100%;height:96px}
 .ship b{display:block;font:600 14px var(--display);margin-top:2px}
 .ship:hover{border-color:var(--gold)}
-.ship.sel{border-color:var(--good);box-shadow:0 0 0 2px rgba(77,227,255,.28),0 0 22px rgba(77,227,255,.18)}
-#lift{position:fixed;inset:0;z-index:60;background:#03040c}
+.ship.sel{border-color:var(--good);box-shadow:0 0 0 2px rgba(255,196,107,.28),0 0 22px rgba(255,196,107,.18)}
+#lift{position:fixed;inset:0;z-index:60;background:#1b1220}
 #lift canvas{display:block;width:100%;height:100%}
 #lift button{position:absolute;right:max(16px,env(safe-area-inset-right,0px));top:max(16px,env(safe-area-inset-top,0px))}
 #go{position:relative;overflow:hidden;min-width:230px;user-select:none;-webkit-user-select:none;touch-action:none}
@@ -157,12 +157,12 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
 .recent .lcship{width:54px;height:64px;display:block}
 .recent .lcmeta{display:block;color:var(--good);margin-top:1px}
 .recent a.lc img{width:44px;height:44px}
-.galaxy{position:relative;margin:16px 0 8px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#03040c;box-shadow:0 0 50px rgba(120,100,255,.14)}
+.galaxy{position:relative;margin:16px 0 8px;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:#1b1220;box-shadow:0 0 50px rgba(255,138,122,.14)}
 .galaxy canvas{display:block;width:100%;height:clamp(340px,52vw,470px)}
 .gtitle{position:absolute;left:16px;top:12px;display:flex;gap:10px;align-items:baseline;font:500 12px var(--mono);letter-spacing:.14em;color:var(--dim);pointer-events:none}
 .gtitle b{color:var(--good);font-weight:500}
 .ghint{position:absolute;left:16px;bottom:10px;font:400 12px var(--mono);color:var(--dim);pointer-events:none;opacity:.85}
-.gtip{position:absolute;left:0;top:0;display:grid;gap:2px;min-width:150px;max-width:240px;padding:10px 12px;border:1px solid var(--good);border-radius:10px;background:rgba(5,6,15,.94);box-shadow:0 0 24px rgba(77,227,255,.25);pointer-events:none;font:500 12px var(--mono);color:var(--dim)}
+.gtip{position:absolute;left:0;top:0;display:grid;gap:2px;min-width:150px;max-width:240px;padding:10px 12px;border:1px solid var(--good);border-radius:10px;background:rgba(27,18,32,.94);box-shadow:0 0 24px rgba(255,196,107,.25);pointer-events:none;font:500 12px var(--mono);color:var(--dim)}
 .gtip b{font:700 15px var(--display);color:var(--fg);overflow-wrap:anywhere}
 .gtip .g{color:var(--good)}.gtip .o{color:var(--sun);margin-top:3px}
 .customize{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:16px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface2)}
@@ -172,7 +172,7 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
 .sw button.sel{border-color:#fff;box-shadow:0 0 0 2px var(--good)}
 .prevbox{position:relative;justify-self:center}
 #shipprev{display:block;width:150px;height:190px}
-#suitprev{position:absolute;right:-4px;bottom:-2px;border-radius:50%;border:2px solid var(--good);background:#05060f}
+#suitprev{position:absolute;right:-4px;bottom:-2px;border-radius:50%;border:2px solid var(--good);background:#1b1220}
 @media(max-width:640px){.customize{grid-template-columns:1fr}}
 @keyframes rise{0%{opacity:0;transform:translateY(10px)}35%{opacity:0}100%{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){#splash{display:none}#splash .cap{animation:none}}
@@ -187,14 +187,14 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
   <div class="slog" id="slog" aria-hidden="true"></div>
   <div class="cap">
     <h2>PetPad</h2>
-    <p>Countdown started. Pick your pet.</p>
+    <p>The shelter doors are open. Pick your pet.</p>
     <button id="enter" type="button">Proceed ›</button>
   </div>
 </div>
 
 <div class="wrap">
 <header>
-  <div class="logo"><span id="logoicon" style="display:inline-flex;width:28px;height:28px"></span>PetPad<span class="net" id="net">devnet</span><span class="hud" aria-label="Orbit status: nominal"><span class="stars" aria-hidden="true">● ● ● ● ●</span><small>ORBIT NOMINAL</small></span></div>
+  <div class="logo"><span id="logoicon" style="display:inline-flex;width:28px;height:28px"></span>PetPad<span class="net" id="net">devnet</span><span class="hud" aria-label="Shelter status: all tails wagging"><span class="stars" aria-hidden="true">● ● ● ● ●</span><small>ALL TAILS WAGGING</small></span></div>
   <div class="ticker" id="ticker" hidden>
     <span class="tk" title="Bitcoin"><svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><circle cx="16" cy="16" r="16" fill="#f7931a"/><text x="16" y="23" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="21" fill="#fff">₿</text></svg><b id="pbtc">…</b></span>
     <span class="tk" title="Solana"><svg viewBox="0 0 32 32" width="22" height="22" aria-hidden="true"><defs><linearGradient id="solg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#9945ff"/><stop offset="1" stop-color="#14f195"/></linearGradient></defs><circle cx="16" cy="16" r="16" fill="#12141c"/><g fill="url(#solg)"><path d="M10 20h13l-2 2.800H8zM10 9.200h13l-2 2.800H8zM8 14.600h13l2 2.800H10z"/></g></svg><b id="psol">…</b></span>
@@ -202,16 +202,16 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
   <button class="wallet" id="wbtn" type="button"><span id="wlabel">Connect Phantom</span></button>
 </header>
 
-<div class="mission">ALL SYSTEMS GO</div>
-<h1>Ready on the pad. <span>Launch a coin.</span></h1>
-<p class="lede">Every coin launched here claims one of eight pets as its logo (a ranger, a pet, an engineer, a navigator, a commander, an observer, a trooper or a scientist), and it stays with that coin for good. Pick your pet, pick your spaceship, and launch. Each one reports the coin’s public numbers, read from the chain.</p>
+<div class="mission">SHELTER OPEN</div>
+<h1>Find a home. <span>Launch a coin.</span></h1>
+<p class="lede">Every coin launched here is adopted by one of eight shelter pets (a Shiba, Corgi, Pug, Husky, Akita, Siamese, Black Cat or Tabby) that becomes its logo and stays with that coin for good. Pick your pet, pick its ride, and launch. You can also send part of your creator fees to an animal charity. Each one reports the coin’s public numbers, read from the chain.</p>
 
-<div class="radio" aria-hidden="true"><span><b>MISSION CONTROL</b> &nbsp;▶ T-minus 10, all stations go &nbsp;·&nbsp; <b>NAV</b> Course set for the Milky Way &nbsp;·&nbsp; <b>SOLAR</b> Flare activity low, launch window open &nbsp;·&nbsp; <b>TIP</b> Every coin gets a flight log &nbsp;·&nbsp; <b>WEATHER</b> Clear skies, no nebula in sight</span></div>
+<div class="radio" aria-hidden="true"><span><b>SHELTER DESK</b> &nbsp;▶ Doors open, treats stocked &nbsp;·&nbsp; <b>WALKS</b> Yard is clear, fence is closed &nbsp;·&nbsp; <b>TIP</b> Every coin gets an adoption certificate &nbsp;·&nbsp; <b>WEATHER</b> Sunny, perfect for a ride home</span></div>
 
-<section class="galaxy" aria-label="The galaxy: every launched coin is a ship in orbit">
-  <canvas id="galaxy" aria-label="An interactive galaxy. Each launched coin is a ship flying its own orbit. The list of launched coins below has the same coins as links."></canvas>
-  <div class="gtitle"><b>THE GALAXY</b><span id="gcount">loading the sky…</span></div>
-  <div class="ghint" id="ghint">Hover a ship to slow it down. Click to open its coin.</div>
+<section class="galaxy" aria-label="The yard: every launched coin is a pet on the road to a new home">
+  <canvas id="galaxy" aria-label="An interactive yard. Each launched coin is a pet riding along its own path. The list of launched coins below has the same coins as links."></canvas>
+  <div class="gtitle"><b>THE YARD</b><span id="gcount">loading the yard…</span></div>
+  <div class="ghint" id="ghint">Hover a pet to slow it down. Click to open its coin.</div>
   <div class="gtip" id="gtip" hidden></div>
 </section>
 <div class="founder" id="founder" hidden></div>
@@ -236,22 +236,22 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
   <div id="pairwrap" hidden><label for="pair">Pair with <span class="rv">optional, mainnet</span></label><select id="pair"><option value="SOL">SOL (standard)</option></select><div class="note" id="pairnote"></div></div>
   <div class="two">
     <div><label for="buy">Your first buy in SOL <span class="rv" id="buyhint">0 to 5</span></label><input type="text" id="buy" value="0.1" inputmode="decimal"></div>
-    <div><label>Logo</label><div class="note" id="pick">A random pet is picked when you launch.</div><div id="customlogo" style="margin-top:10px"><label for="logofile">Custom coin logo <span class="rv">optional</span></label><input type="file" id="logofile" accept="image/png,image/jpeg,image/webp"><div class="note">Leave empty to use your pet’s picture. It is squared to 512 px and shows on your rocket too.</div></div></div>
+    <div><label>Logo</label><div class="note" id="pick">A random pet is picked when you launch.</div><div id="customlogo" style="margin-top:10px"><label for="logofile">Custom coin logo <span class="rv">optional</span></label><input type="file" id="logofile" accept="image/png,image/jpeg,image/webp"><div class="note">Leave empty to use your pet’s picture. It is squared to 512 px and shows on your ride too.</div></div></div>
   </div>
-  <div><label id="shiplab">Spaceship <span class="rv">pick your ride</span></label><div class="ships" id="ships" role="radiogroup" aria-labelledby="shiplab"></div><div class="note" id="shipnote"></div></div>
+  <div><label id="shiplab">Ride <span class="rv">pick how your pet gets there</span></label><div class="ships" id="ships" role="radiogroup" aria-labelledby="shiplab"></div><div class="note" id="shipnote"></div></div>
   <div class="customize">
     <div class="cgrid">
-      <div><label>Hull</label><div class="sw" id="swhull" role="radiogroup" aria-label="Hull colour"></div></div>
+      <div><label>Ride colour</label><div class="sw" id="swhull" role="radiogroup" aria-label="Ride colour"></div></div>
       <div><label>Trim</label><div class="sw" id="swacc" role="radiogroup" aria-label="Trim colour"></div></div>
-      <div><label>Suit <span class="rv">your pet</span></label><div class="sw" id="swsuit" role="radiogroup" aria-label="Suit colour"></div></div>
-      <div><label for="call">Callsign <span class="rv">name tag, optional</span></label><input type="text" id="call" maxlength="16" placeholder="e.g. Mooner" autocomplete="off"></div>
+      <div><label>Collar <span class="rv">your pet</span></label><div class="sw" id="swsuit" role="radiogroup" aria-label="Collar colour"></div></div>
+      <div><label for="call">Name tag <span class="rv">optional</span></label><input type="text" id="call" maxlength="16" placeholder="e.g. Mooner" autocomplete="off"></div>
     </div>
-    <div class="prevbox"><canvas id="shipprev" aria-label="Preview of your rocket"></canvas><img id="suitprev" alt="" hidden width="84" height="84"></div>
+    <div class="prevbox"><canvas id="shipprev" aria-label="Preview of your ride"></canvas><img id="suitprev" alt="" hidden width="84" height="84"></div>
   </div>
   <div><label for="after">After launch, open</label><select id="after"><option value="coin">The coin page on PetPad</option><option value="gmgn">GMGN (mainnet only)</option><option value="none">Nothing, I will pick from the menu</option></select></div>
   <div class="note" id="feenote"></div>
   <div id="charitybox" hidden style="margin-top:10px"><label for="charity">Give to an animal charity</label><select id="charity"><option value="0">No, all my share stays with me</option></select><div class="note" id="charitynote"></div></div>
-  <div class="row"><button class="btn go" id="go" type="button" aria-label="Hold to fuel and launch. Press and hold until the tank is full, then it lifts off."><span class="fill"></span><span class="lab" id="golab">Hold to Fuel &amp; Launch</span></button><button class="btn" id="air" type="button" hidden>Get 1 devnet SOL</button><span class="msg" id="msg"></span></div>
+  <div class="row"><button class="btn go" id="go" type="button" aria-label="Hold to open the gate and launch. Press and hold until the gate is open, then your pet rides out."><span class="fill"></span><span class="lab" id="golab">Hold to Fuel &amp; Launch</span></button><button class="btn" id="air" type="button" hidden>Get 1 devnet SOL</button><span class="msg" id="msg"></span></div>
   <div class="log" id="log"></div>
   <div class="result" id="result"></div>
 </div>
@@ -272,7 +272,7 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
 <script src="/ships.js"></script>
 <script src="/galaxy.js"></script>
 <script src="/gridfx.js"></script>
-<div id="lift" hidden aria-live="polite"><canvas id="liftcv" aria-label="Your spaceship lifting off"></canvas><button class="btn" id="liftx" type="button">Skip</button></div>
+<div id="lift" hidden aria-live="polite"><canvas id="liftcv" aria-label="Your pet riding to its new home"></canvas><button class="btn" id="liftx" type="button">Skip</button></div>
 <script>
 (function(){
   var $=function(id){return document.getElementById(id)};
@@ -337,11 +337,11 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
         el.href='/coin/'+b.mint;el.title='Open the page for '+(b.name||b.symbol);
       }
       el.className='bear '+b.state+''+(pickSlot===b.n?' sel':'');
-      var im=document.createElement('img');im.src='/api/preview/'+b.n+'.png?v=pets';im.alt=(b.agent?b.agent.name+', '+b.agent.role.toLowerCase():'Pet '+b.n)+(b.state==='launched'&&b.name?', claimed by '+b.name:'');im.loading='lazy';el.appendChild(im);
+      var im=document.createElement('img');im.src='/api/preview/'+b.n+'.png?v=pets';im.alt=(b.agent?b.agent.name+', '+(b.agent.breed||b.agent.role.toLowerCase()):'Pet '+b.n)+(b.state==='launched'&&b.name?', claimed by '+b.name:'');im.loading='lazy';el.appendChild(im);
       var t=document.createElement('b');t.textContent=b.state==='launched'&&b.name?b.name:(b.agent?b.agent.name:'#'+String(b.n).padStart(2,'0'));el.appendChild(t);
       var sm=document.createElement('small');
       if(b.state==='launched')sm.textContent='$'+b.symbol+' · '+(b.agent?b.agent.name:'#'+String(b.n).padStart(2,'0'));
-      else sm.textContent=b.state==='held'?'Being launched…':(pickSlot===b.n?'Selected':(b.agent?b.agent.role.toLowerCase()+(b.agent.ability?' · '+b.agent.ability.name:''):'Open'));
+      else sm.textContent=b.state==='held'?'Being launched…':(pickSlot===b.n?'Selected':(b.agent?(b.agent.breed||b.agent.role.toLowerCase())+(b.agent.ability?' · '+b.agent.ability.name:''):'Open'));
       if(b.agent&&b.agent.ability)el.title=b.agent.name+' · '+b.agent.ability.name+': '+b.agent.ability.does+(b.agent.weapon?'':'');
       el.appendChild(sm);g.appendChild(el);
     });
@@ -412,7 +412,7 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
   function drawRecent(list){
     var box=$('recent'),l=$('recentlist');l.textContent='';
     var gl=(list||[]).filter(function(r){return /^[1-9A-HJ-NP-Za-km-z]{32,44}$/.test(r.mint||'')});
-    if(galaxy){galaxy.setCoins(gl);$('gcount').textContent=gl.length?gl.length+(gl.length===1?' ship':' ships')+' in flight':'no ships yet';$('ghint').hidden=!gl.length}
+    if(galaxy){galaxy.setCoins(gl);$('gcount').textContent=gl.length?gl.length+(gl.length===1?' pet':' pets')+' on the road':'no pets yet';$('ghint').hidden=!gl.length}
     list=gl.slice(0,12);
     if(!list||!list.length){box.hidden=true;return}
     list.forEach(function(r){
@@ -422,10 +422,10 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
       var sc=document.createElement('canvas');sc.className='lcship';sc.setAttribute('aria-hidden','true');a.appendChild(sc);
       var d=document.createElement('div'),b=document.createElement('b'),sm=document.createElement('small'),s2=document.createElement('small');
       b.textContent=r.name||('$'+r.symbol);sm.textContent='$'+r.symbol+' · '+ago(r.at);
-      s2.className='lcmeta';s2.textContent=(sp?sp.name:'Ship')+' · '+(r.agent||'Pet');
+      s2.className='lcmeta';s2.textContent=(sp?sp.name:'Ride')+' · '+(r.agent||'Pet');
       d.appendChild(b);d.appendChild(sm);d.appendChild(s2);a.appendChild(d);
       var im=document.createElement('img');im.src=prev(r.bear);im.alt=(r.agent||'Pet')+' logo';a.appendChild(im);
-      l.appendChild(a);if(sp&&window.Ships){var lim=r.logo?new Image():null;if(lim){lim.onload=function(){window.Ships.thumb(sc,sp.id,r.look,lim)};lim.src='/images/'+r.logo+'.png'}window.Ships.thumb(sc,sp.id,r.look,null)}
+      l.appendChild(a);if(sp&&window.Ships){var fim=new Image(),lim=r.logo&&r.custom?new Image():null,draw1=function(){window.Ships.thumb(sc,sp.id,r.look,lim,fim)};fim.onload=draw1;fim.src='/api/preview/'+r.bear+'.png?v=pets';if(lim){lim.onload=draw1;lim.src='/images/'+r.logo+'.png'}draw1()}
     });
     box.hidden=!l.firstChild;
   }
@@ -439,19 +439,19 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
       if(j.platform){var pct=j.platform.bps/100;var nb=document.createElement('b');nb.textContent=(100-pct)+'% to you';$('feenote').appendChild(document.createTextNode('Creator fees from trading: '));$('feenote').appendChild(nb);$('feenote').appendChild(document.createTextNode(' and '+pct+'% to PetPad. You approve the split in your wallet right after the launch.'))}
       else $('feenote').textContent='Creator fees from trading all go to your wallet.';
       feeNoteBase=$('feenote').textContent;showPick();
-      if(!$('logoicon').firstChild)$('logoicon').appendChild(bearIcon(j.silhouette||[],'#ff4fd8'));
+      if(!$('logoicon').firstChild)$('logoicon').appendChild(bearIcon(j.silhouette||[],'#ff6f8a'));
       drawBears();drawFounder();drawRecent(j.recent);
     }).catch(function(){$('count').textContent='Could not load the line-up. Refresh in a minute.'});
   }
 
-  var ship='nova',look={hull:0,accent:0,suit:0},logoImg=null,shipCvs=[];
+  var ship='van',look={hull:0,accent:0,suit:0},logoImg=null,shipCvs=[];
   function lookObj(){return {hull:look.hull,accent:look.accent}}
   function drawPrev(){
     var pv=$('shipprev');if(!pv||!window.Ships)return;
-    var im=logoImg;if(!im&&pickSlot&&pickSlot!=='founder'&&pickSlot!=='F'){im=drawPrev.face;if(!im||im.getAttribute('data-k')!==pickSlot+':'+look.suit){im=new Image();im.setAttribute('data-k',pickSlot+':'+look.suit);im.onload=drawPrev;im.src='/api/preview/'+pickSlot+'.png?suit='+look.suit;drawPrev.face=im}}
-    window.Ships.thumb(pv,ship,lookObj(),im);
+    var im=null;if(pickSlot&&pickSlot!=='founder'&&pickSlot!=='F'){im=drawPrev.face;if(!im||im.getAttribute('data-k')!==pickSlot+':'+look.suit){im=new Image();im.setAttribute('data-k',pickSlot+':'+look.suit);im.onload=drawPrev;im.src='/api/preview/'+pickSlot+'.png?suit='+look.suit;drawPrev.face=im}}
+    window.Ships.thumb(pv,ship,lookObj(),logoImg,im);
     var sp=$('suitprev');if(sp){var n=pickSlot&&pickSlot!=='founder'&&pickSlot!=='F'?pickSlot:0;sp.hidden=!n;if(n)sp.src='/api/preview/'+n+'.png?suit='+look.suit}
-    shipCvs.forEach(function(x){window.Ships.thumb(x.cv,x.id,lookObj(),im)});
+    shipCvs.forEach(function(x){window.Ships.thumb(x.cv,x.id,lookObj(),logoImg,im)});
   }
   (function(){var box=$('ships');if(!box||!window.Ships)return;
     function mark(){var kids=box.children;for(var i=0;i<kids.length;i++){var on=kids[i].getAttribute('data-id')===ship;kids[i].classList.toggle('sel',on);kids[i].setAttribute('aria-checked',on?'true':'false')}
@@ -554,9 +554,9 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
   });
   var feeBusy2=false,keepFeeLog=false;
 
-  // Hold to fuel: press and hold the Launch button until the tank is full and the launch starts. Release early and it drains.
+  // Hold to open the gate: press and hold the Launch button until the gate is open and the launch starts. Release early and it drains.
   (function(){var go=$('go'),fill=go.querySelector('.fill'),lab=$('golab'),HOLD=1300,t0=0,raf=0,fueled=false,holding=false,drain=0;
-    function setFuel(v){go.style.setProperty('--fuel',v.toFixed(3));lab.textContent=v>=1?'Ignition!':(v>0?'Fueling '+Math.round(v*100)+'%':'Hold to Fuel & Launch')}
+    function setFuel(v){go.style.setProperty('--fuel',v.toFixed(3));lab.textContent=v>=1?'Gate open!':(v>0?'Opening '+Math.round(v*100)+'%':'Hold to Open the Gate & Launch')}
     function tick(now){if(!holding)return;var v=Math.min(1,(now-t0)/HOLD);setFuel(v);if(v>=1){holding=false;go.classList.remove('fueling');fueled=true;try{if(navigator.vibrate)navigator.vibrate(60)}catch(e){}go.click();setTimeout(function(){if(!go.disabled)setFuel(0)},1800);return}raf=requestAnimationFrame(tick)}
     function start(e){if(go.disabled||holding)return;if(e&&e.type==='pointerdown'&&e.button>0)return;holding=true;cancelAnimationFrame(drain);t0=performance.now();go.classList.add('fueling');try{if(navigator.vibrate)navigator.vibrate(15)}catch(e2){}raf=requestAnimationFrame(tick)}
     function stop(){if(!holding)return;holding=false;cancelAnimationFrame(raf);go.classList.remove('fueling');var v=parseFloat(go.style.getPropertyValue('--fuel'))||0;
@@ -565,7 +565,7 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
     go.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();start(e)}});go.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter')stop()});
     go.addEventListener('contextmenu',function(e){e.preventDefault()});
     // a plain click does nothing; only a finished hold gets through to the launch handler
-    go.addEventListener('click',function(e){if(fueled){fueled=false;return}e.stopImmediatePropagation();e.preventDefault();say('Press and hold the button until the tank is full to launch.','warn')},true);
+    go.addEventListener('click',function(e){if(fueled){fueled=false;return}e.stopImmediatePropagation();e.preventDefault();say('Press and hold the button until the gate is open to launch.','warn')},true);
     new MutationObserver(function(){if(!go.disabled)setFuel(0)}).observe(go,{attributes:true,attributeFilter:['disabled']});
     setFuel(0)})();
   $('go').addEventListener('click',async function(){
@@ -615,7 +615,7 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
       if(!lockFailed)s3('ok',bearName(pickSlot)+' is now locked to $'+sym);else s3('warn',(ln&&ln.json.error)||'Could not confirm. Your coin exists on-chain.');
       var box=$('result');box.textContent='';
       var h=document.createElement('div');h.textContent='Your coin is live. Mint address:';box.appendChild(h);
-      var m=document.createElement('div');m.style.cssText='margin:8px 0;color:#ff4fd8;font-family:var(--mono)';m.textContent=out.mint;box.appendChild(m);
+      var m=document.createElement('div');m.style.cssText='margin:8px 0;color:#ff6f8a;font-family:var(--mono)';m.textContent=out.mint;box.appendChild(m);
       var cp=document.createElement('button');cp.className='cp';cp.type='button';cp.textContent='Copy';cp.onclick=function(){try{navigator.clipboard.writeText(out.mint).then(function(){cp.textContent='Copied'},function(){cp.textContent='Select and copy'})}catch(e){cp.textContent='Select and copy'}};box.appendChild(cp);
       var M=out.mint,link=st.cluster==='mainnet'?'https://pump.fun/coin/'+M:'https://explorer.solana.com/address/'+M+'?cluster=devnet';
       var dd=document.createElement('details');dd.className='openmenu';var sm=document.createElement('summary');sm.textContent='Open coin';dd.appendChild(sm);
@@ -639,7 +639,7 @@ h2{font-weight:600;padding-left:14px;border-left:3px solid var(--gold);text-shad
       gm=null;
       try{if(window.Ships&&!window.caveReduce){var lf=$('lift'),fsrc=(pickSlot==='F'||pickSlot==='founder')?'/api/founder.png?v=pets':'/api/preview/'+pickSlot+'.png?v=pets',shp=window.Ships.list.filter(function(x){return x.id===ship})[0],lh;
         var closeLift=function(){if(lh)lh.stop();lf.hidden=true};
-        lf.hidden=false;lh=window.Ships.liftoff($('liftcv'),ship,fsrc,bearName(rs.json.slot)+' launches $'+sym+' in the '+(shp?shp.name:'ship'),closeLift,lookObj(),logoImg||drawPrev.face||null);$('liftx').onclick=closeLift}}catch(e8){}
+        lf.hidden=false;lh=window.Ships.liftoff($('liftcv'),ship,fsrc,bearName(rs.json.slot)+' launches $'+sym+' in the '+(shp?shp.name:'ship'),closeLift,lookObj(),logoImg||null);$('liftx').onclick=closeLift}}catch(e8){}
       box.classList.add('on');pickSlot=null;showPick();refresh();
     }catch(e){console.error(e)}
     finally{

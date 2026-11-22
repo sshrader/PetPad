@@ -140,7 +140,7 @@ function check(label, ok, extra) { console.log((ok ? 'PASS ' : 'FAIL ') + label 
   check('with no charity share chosen, none is set', r.status === 201 && (await r.json()).charity === null);
   const stC = await (await fetch(base + '/api/bears')).json();
   check('the state lists both charities and drops an unsafe link', stC.charities.dog.name === 'Test Dog Rescue' && stC.charities.dog.url === 'https://dogs.example/' && stC.charities.cat.url === '' && stC.charityChoices.join() === '0,10,25,50', JSON.stringify(stC.charities));
-  r = await meta({ name: 'Honey', symbol: 'HONEY', image: 'data:image/png;base64,AAAA', ship: 'falcon', look: { hull: 2, accent: 3, suit: 99, call: 'Mooner <b>' } }, xa2.json.token);
+  r = await meta({ name: 'Honey', symbol: 'HONEY', image: 'data:image/png;base64,AAAA', ship: 'bus', look: { hull: 2, accent: 3, suit: 99, call: 'Mooner <b>' } }, xa2.json.token);
   check('an uploaded image is ignored, the bear is always the logo', r.status === 201);
   r = await meta({ name: 'Honey', symbol: 'HONEY', website: 'javascript:alert(1)' }, xa2.json.token);
   check('bad website rejected', r.status === 400);
@@ -172,7 +172,7 @@ function check(label, ok, extra) { console.log((ok ? 'PASS ' : 'FAIL ') + label 
   r = await (await fetch(base + '/api/bears')).json();
   const locked = r.bears.find((x) => x.n === SL);
   check('the bear shows its coin', locked.state === 'launched' && locked.symbol === 'HONEY' && locked.mint === mint);
-  check('recent launches lists the new coin, and the bear knows its dev', r.recent.length === 1 && r.recent[0].mint === mint && r.recent[0].symbol === 'HONEY' && r.recent[0].ship === 'falcon' && locked.dev === a.address && locked.split === true);
+  check('recent launches lists the new coin, and the bear knows its dev', r.recent.length === 1 && r.recent[0].mint === mint && r.recent[0].symbol === 'HONEY' && r.recent[0].ship === 'bus' && locked.dev === a.address && locked.split === true);
 
   // the coin's own page
   const chainMod = require('../chain.js');
@@ -192,7 +192,7 @@ function check(label, ok, extra) { console.log((ok ? 'PASS ' : 'FAIL ') + label 
   check('coin page data has supply and the bonding curve', cj.onchain.supply === 1000000000 && cj.onchain.curve && Math.abs(cj.onchain.curve.progress - 12.6) < 0.1 && cj.onchain.curve.raisedSol === 10 && cj.onchain.curve.marketCapSol > 0, JSON.stringify(cj.onchain.curve));
   check('coin page data has holders, the dev share and top 10 without the curve', cj.onchain.holders.length === 3 && cj.onchain.holders[0].isCurve && cj.onchain.holders[1].isDev && cj.onchain.devHoldPct === 5 && cj.onchain.top10Pct === 7, JSON.stringify(cj.onchain).slice(0, 300));
   check('/api/bears gives every agent a name and role', (await (await fetch(base + '/api/bears')).json()).bears.every((x) => x.agent && x.agent.name && x.agent.role));
-  check('the chosen spaceship is saved and shown on the coin page', cj.ship === 'falcon', String(cj.ship));
+  check('the chosen ride is saved and shown on the coin page', cj.ship === 'bus', String(cj.ship));
   check('colours are kept (a bad index falls back to 0), the callsign is cleaned, and the coin logo is linked', cj.look && cj.look.hull === 2 && cj.look.accent === 3 && cj.look.suit === 0 && cj.look.call === 'Mooner b' && /^\/images\/[a-f0-9]{16}\.png$/.test(cj.logo), JSON.stringify(cj.look) + ' ' + cj.logo);
   check('coin page data names its agent', cj.agent && /^[A-Z]+$/.test(cj.agent.name) && /^[A-Z]+$/.test(cj.agent.role) && cj.agent.blurb.length > 10, JSON.stringify(cj.agent));
   check('coin page data has an agent report built from the chain numbers', cj.report && cj.report.lines.some((l) => l.kind === 'curve' && /12\.6% full/.test(l.text)) && cj.report.lines.some((l) => l.kind === 'dev' && /holds 5% of the supply/.test(l.text)) && cj.report.status === 'steady' && /not advice/.test(cj.report.note), JSON.stringify(cj.report).slice(0, 300));
@@ -312,7 +312,7 @@ function check(label, ok, extra) { console.log((ok ? 'PASS ' : 'FAIL ') + label 
     check('agents in a set each have their own name and their own picture', names.size === 24 && looks.size === 24);
     check('every slot is an pet with a role from the list, and the set has no teams', [0, 1, 2, 3, 4, 5, 6, 7].every((n) => { const a = artM.agentFor(n, 'unit-secret'); return !('team' in a) && artM.ROLES[a.role] && /^[A-Z]+$/.test(a.name); }));
     check('the first eight pets are all different roles', new Set([0, 1, 2, 3, 4, 5, 6, 7].map((n) => artM.agentFor(n, 'unit-secret').role)).size === 8);
-    check('ships: six designs, an unknown ship falls back to nova on the server', require('../ships.js').SHIPS.length === 6 && require('../ships.js').isShip('falcon') && !require('../ships.js').isShip('x'));
+    check('ships: six designs, an unknown ship falls back to the van on the server', require('../ships.js').SHIPS.length === 6 && require('../ships.js').isShip('bus') && !require('../ships.js').isShip('x'));
     const ag = artM.agentFor(0, 'unit-secret'), ag2 = artM.agentFor(0, 'unit-secret'), ag3 = artM.agentFor(0, 'other-secret');
     check('an agent is the same every time for the same secret', JSON.stringify(ag) === JSON.stringify(ag2) && ag.name && ag.role && ag.blurb);
     check('a different secret gives a different set', [0, 1, 2, 3].some((n) => JSON.stringify(artM.agentFor(n, 'unit-secret')) !== JSON.stringify(artM.agentFor(n, 'other-secret'))) && ag3.name);

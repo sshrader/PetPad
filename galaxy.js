@@ -1,8 +1,8 @@
 'use strict';
-// The galaxy on the home page: every launched coin is a ship flying its own orbit around a small sun, with its ticker and pet.
-// Hover a ship to slow it and read its card; click (or tap twice on a phone) to open the coin page. Plain 2D canvas, original art.
+// The yard on the home page: every launched coin is a pet riding along its own path through the shelter yard, with its ticker.
+// Hover a ride to slow it and read its card; click (or tap twice on a phone) to open the coin page. Plain 2D canvas, original art.
 (function (root) {
-  var CY = '#4de3ff', VI = '#9d7bff', MG = '#ff4fd8', GOLD = '#ffd98a';
+  var CY = '#ffc46b', VI = '#ff8a7a', MG = '#ff6f8a', GOLD = '#ffd98a';
   var reduce = !!(root.matchMedia && root.matchMedia('(prefers-reduced-motion: reduce)').matches);
   function rnd(i) { var s = Math.sin(i * 127.1 + 311.7) * 43758.5453; return s - Math.floor(s); }
   var STARS = []; for (var i = 0; i < 220; i++) STARS.push({ x: rnd(i), y: rnd(i + 500), z: 0.25 + rnd(i + 900) * 0.9, p: rnd(i + 1300) * 6.28 });
@@ -24,70 +24,58 @@
       coins = (list || []).slice(0, 24).map(function (r, i) {
         var o = keep[r.mint], lane = i % 6, ring = Math.floor(i / 6);
         var c = o || { th: rnd(i + 3) * 6.28 };
-        c.look = r.look || null; c.logoImg = r.logo ? portrait('/images/' + r.logo + '.png') : null; c.call = r.call || '';
-        c.mint = r.mint; c.name = r.name || ('$' + r.symbol); c.sym = r.symbol; c.ship = r.ship || 'nova'; c.agent = r.agent || 'Pet'; c.at = r.at; c.bear = r.bear; c.flag = r.bear === 'F';
-        c.lane = c.flag ? 0 : 1 + lane + ring * 0.55; c.dir = i % 2 ? -1 : 1; c.speed = (0.20 - 0.022 * c.lane) * c.dir; c.tilt = (rnd(i + 11) - 0.5) * 0.7;
-        c.face = portrait(c.flag ? '/api/founder.png?v=astro' : '/api/preview/' + r.bear + '.png?v=astro');
+        c.look = r.look || null; c.logoImg = r.logo && r.custom ? portrait('/images/' + r.logo + '.png') : null; c.call = r.call || '';
+        c.mint = r.mint; c.name = r.name || ('$' + r.symbol); c.sym = r.symbol; c.ship = r.ship || 'van'; c.agent = r.agent || 'Pet'; c.at = r.at; c.bear = r.bear; c.flag = r.bear === 'F';
+        c.lane = c.flag ? 0 : 1 + lane + ring * 0.55; c.dir = i % 2 ? -1 : 1; c.speed = Math.max(0.07, 0.16 - 0.012 * c.lane); c.tilt = (rnd(i + 11) - 0.5) * 0.7;
+        c.face = portrait(c.flag ? '/api/founder.png?v=pets' : '/api/preview/' + r.bear + '.png?v=pets');
         return c;
       });
       if (selected && !coins.some(function (c) { return c.mint === selected; })) selected = null;
       if (reduce) self.draw();
     };
     function place(c, t) {
-      var cx = W / 2, cy = H / 2 + 6, k = Math.min(W, H * 2.1), rx = k * (0.12 + 0.052 * c.lane), ry = Math.max(34, rx * 0.36);
-      var th = c.th + t * c.speed, ex = Math.cos(th) * rx, ey = Math.sin(th) * ry;
-      var ct = Math.cos(c.tilt), st = Math.sin(c.tilt);
-      c.x = cx + ex * ct - ey * st; c.y = cy + ex * st + ey * ct;
-      var vx = -Math.sin(th) * rx * c.dir, vy = Math.cos(th) * ry * c.dir;
-      var hx = vx * ct - vy * st, hy = vx * st + vy * ct;
-      c.head = Math.atan2(hy, hx) + Math.PI / 2; c.depth = Math.sin(th);
-      c.sc = (c.flag ? 0.52 : 0.38) + 0.1 * c.depth;
+      var span = W + 200, u = ((c.th / 6.28 + t * c.speed * 0.5) % 1 + 1) % 1;
+      c.x = c.dir > 0 ? -100 + u * span : W + 100 - u * span;
+      var base = H * 0.52 + c.lane * H * 0.055; c.y = base + (c.flag ? 0 : Math.sin(c.th * 5 + t * 0.6) * 2);
+      c.depth = c.lane; c.sc = (c.flag ? 0.9 : 0.55 + 0.04 * c.lane);
     }
     function bg(t) {
-      var g = ctx.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#03040c'); g.addColorStop(0.55, '#0a0b26'); g.addColorStop(1, '#150b32'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
-      ctx.save(); ctx.translate(W / 2, H / 2); ctx.rotate(-0.38);
-      var b = ctx.createLinearGradient(0, -H * 0.5, 0, H * 0.5); b.addColorStop(0, 'rgba(150,140,255,0)'); b.addColorStop(0.5, 'rgba(230,215,255,.17)'); b.addColorStop(1, 'rgba(150,140,255,0)'); ctx.fillStyle = b; ctx.fillRect(-W, -H * 0.5, W * 2, H);
-      ctx.restore();
-      glow(W * 0.18, H * 0.3, H * 0.7, '157,123,255', 0.14); glow(W * 0.85, H * 0.78, H * 0.8, '255,79,216', 0.1); glow(W * 0.74, H * 0.18, H * 0.5, '77,227,255', 0.08);
-      for (var i = 0; i < STARS.length; i++) {
-        var s = STARS[i], x = ((s.x * W + px * s.z * 14 + T * s.z * 2) % W + W) % W, y = s.y * H + py * s.z * 8, a = 0.3 + 0.6 * s.z * (0.6 + 0.4 * Math.sin(t * (0.5 + s.z) + s.p));
-        ctx.globalAlpha = Math.min(1, a); ctx.fillStyle = '#fff'; var r = 0.5 + s.z * 0.9; ctx.fillRect(x, y, r, r);
-      }
-      ctx.globalAlpha = 1;
+      var hz = H * 0.42, g = ctx.createLinearGradient(0, 0, 0, hz); g.addColorStop(0, '#2a1d3c'); g.addColorStop(0.55, '#b0506a'); g.addColorStop(1, '#ffb070'); ctx.fillStyle = g; ctx.fillRect(0, 0, W, hz + 2);
+      glow(W * 0.78, hz - 6, H * 0.5, '255,214,150', 0.5); ctx.fillStyle = '#ffe9b8'; ctx.beginPath(); ctx.arc(W * 0.78, hz - 6, 26, 0, 7); ctx.fill();
+      for (var i = 0; i < STARS.length / 4; i++) { var s = STARS[i]; ctx.globalAlpha = 0.25 + 0.4 * s.z; ctx.fillStyle = '#fff'; ctx.fillRect(s.x * W, s.y * hz * 0.7, 1.4, 1.4); }
+      ctx.globalAlpha = 0.55; ctx.fillStyle = '#ffe1d0'; for (var c2 = 0; c2 < 4; c2++) { var cx = ((c2 * 0.29 + T * 0.004 + 0.1) % 1.2 - 0.1) * W, cy = hz * (0.25 + 0.14 * (c2 % 3)); ctx.beginPath(); ctx.ellipse(cx, cy, 54, 12, 0, 0, 7); ctx.ellipse(cx + 26, cy - 8, 32, 11, 0, 0, 7); ctx.ellipse(cx - 28, cy - 4, 28, 9, 0, 0, 7); ctx.fill(); } ctx.globalAlpha = 1;
+      ctx.fillStyle = '#6a3f58'; ctx.beginPath(); ctx.moveTo(0, hz); ctx.quadraticCurveTo(W * 0.2, hz - 36, W * 0.45, hz - 6); ctx.quadraticCurveTo(W * 0.7, hz - 40, W, hz - 4); ctx.lineTo(W, hz + 4); ctx.lineTo(0, hz + 4); ctx.fill();
+      // the shelter (left) with a heart sign, and a house (right)
+      var sx = W * 0.09, sh = Math.min(70, H * 0.17); ctx.fillStyle = '#8a6070'; ctx.fillRect(sx - sh * 0.9, hz - sh, sh * 1.8, sh + 6); ctx.fillStyle = '#b07058'; ctx.beginPath(); ctx.moveTo(sx - sh * 1.05, hz - sh); ctx.lineTo(sx, hz - sh * 1.55); ctx.lineTo(sx + sh * 1.05, hz - sh); ctx.fill();
+      ctx.fillStyle = '#3a2a40'; ctx.fillRect(sx - sh * 0.2, hz - sh * 0.5, sh * 0.4, sh * 0.56); ctx.fillStyle = '#ff8aa0'; ctx.beginPath(); var hy = hz - sh * 0.98, hs = sh * 0.22; ctx.moveTo(sx, hy + hs * 0.4); ctx.bezierCurveTo(sx - hs, hy - hs * 0.4, sx - hs * 0.5, hy - hs * 1.1, sx, hy - hs * 0.5); ctx.bezierCurveTo(sx + hs * 0.5, hy - hs * 1.1, sx + hs, hy - hs * 0.4, sx, hy + hs * 0.4); ctx.fill();
+      var hx = W * 0.9, hh = sh * 0.8; ctx.fillStyle = '#c28a62'; ctx.fillRect(hx - hh, hz - hh, hh * 2, hh + 6); ctx.fillStyle = '#d65a4a'; ctx.beginPath(); ctx.moveTo(hx - hh * 1.2, hz - hh); ctx.lineTo(hx, hz - hh * 1.6); ctx.lineTo(hx + hh * 1.2, hz - hh); ctx.fill(); ctx.fillStyle = '#ffe08a'; ctx.fillRect(hx - hh * 0.6, hz - hh * 0.7, hh * 0.45, hh * 0.45);
+      // grass, dirt lanes and a fence
+      var gg = ctx.createLinearGradient(0, hz, 0, H); gg.addColorStop(0, '#4a7a58'); gg.addColorStop(1, '#2a5240'); ctx.fillStyle = gg; ctx.fillRect(0, hz + 2, W, H - hz);
+      ctx.fillStyle = 'rgba(210,170,120,.22)'; for (var l = 1; l <= 7; l++) { ctx.fillRect(0, H * 0.52 + l * H * 0.055 + 8, W, 5); }
+      ctx.fillStyle = '#e8d2b0'; for (var f = 0; f < W; f += 26) { ctx.fillRect(f, hz + 4, 5, 20); } ctx.fillRect(0, hz + 10, W, 3);
+      for (var q = 0; q < 14; q++) { ctx.fillStyle = 'rgba(255,255,255,.18)'; var px2 = rnd(q + 3) * W, py2 = hz + 30 + rnd(q + 9) * (H - hz - 40); ctx.beginPath(); ctx.ellipse(px2, py2, 5, 4, 0, 0, 7); ctx.fill(); [[-6, -6], [-2, -9], [2, -9], [6, -6]].forEach(function (d) { ctx.beginPath(); ctx.ellipse(px2 + d[0], py2 + d[1], 2, 2.6, 0, 0, 7); ctx.fill(); }); }
     }
     function glow(x, y, r, rgb, a) { var g = ctx.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, 'rgba(' + rgb + ',' + a + ')'); g.addColorStop(1, 'rgba(' + rgb + ',0)'); ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2); }
-    function sunAndLanes() {
-      var cx = W / 2, cy = H / 2 + 6, k = Math.min(W, H * 2.1);
-      ctx.lineWidth = 1;
-      for (var l = 1; l <= 7; l++) { var rx = k * (0.12 + 0.052 * l); ctx.strokeStyle = 'rgba(170,182,232,' + (0.1 - l * 0.008) + ')'; ctx.beginPath(); ctx.ellipse(cx, cy, rx, Math.max(34, rx * 0.36), 0, 0, 7); ctx.stroke(); }
-      glow(cx, cy, 120, '255,200,120', 0.5); glow(cx, cy, 36, '255,240,200', 0.95);
-    }
     function drawCoin(c, t) {
       var act = hover === c || selected === c.mint;
-      ctx.save(); ctx.translate(c.x, c.y); ctx.rotate(c.head);
-      if (c.flag) { var g = ctx.createRadialGradient(0, 0, 4, 0, 0, 90 * c.sc * 2.4); g.addColorStop(0, 'rgba(255,217,138,.4)'); g.addColorStop(1, 'rgba(255,217,138,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, 90 * c.sc * 2.4, 0, 7); ctx.fill(); }
-      if (act) { ctx.strokeStyle = CY; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(0, -8 * c.sc, 74 * c.sc * 1.15, 0, 7); ctx.stroke(); }
-      root.Ships.draw(ctx, c.ship, 0, 0, c.sc * (act ? 1.12 : 1), 0.55, t + c.th * 9, c.look, c.logoImg);
+      ctx.save(); ctx.translate(c.x, c.y);
+      if (c.flag) { var g = ctx.createRadialGradient(0, 0, 4, 0, 0, 90 * c.sc * 2.4); g.addColorStop(0, 'rgba(255,217,138,.45)'); g.addColorStop(1, 'rgba(255,217,138,0)'); ctx.fillStyle = g; ctx.beginPath(); ctx.arc(0, 0, 90 * c.sc * 2.4, 0, 7); ctx.fill(); }
+      if (act) { ctx.strokeStyle = CY; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(0, 4 * c.sc, 74 * c.sc * 1.15, 52 * c.sc * 1.15, 0, 0, 7); ctx.stroke(); }
+      root.Ships.draw(ctx, c.ship, 0, 0, c.sc * (act ? 1.1 : 1), 1, t + c.th * 9, c.look, c.logoImg, c.face, c.dir < 0);
       ctx.restore();
-      // ticker label with the pet, kept upright under the ship
-      var ly = c.y + 52 * c.sc + 18, label = '$' + c.sym, w;
-      ctx.font = '500 12px "JetBrains Mono", monospace'; w = ctx.measureText(label).width + 34;
-      ctx.fillStyle = act ? 'rgba(10,13,34,.95)' : 'rgba(5,6,15,.7)'; ctx.strokeStyle = act ? CY : (c.flag ? GOLD : 'rgba(157,123,255,.55)'); ctx.lineWidth = 1;
+      var ly = c.y + 44 * c.sc + 14, label = '$' + c.sym, w;
+      ctx.font = '500 12px "JetBrains Mono", monospace'; w = ctx.measureText(label).width + 16;
+      ctx.fillStyle = act ? 'rgba(58,36,56,.95)' : 'rgba(58,36,56,.75)'; ctx.strokeStyle = act ? CY : (c.flag ? GOLD : 'rgba(255,196,107,.55)'); ctx.lineWidth = 1;
       rr(c.x - w / 2, ly - 11, w, 22, 11); ctx.fill(); ctx.stroke();
-      if (c.face && c.face.complete && c.face.naturalWidth) { ctx.save(); ctx.beginPath(); ctx.arc(c.x - w / 2 + 12, ly, 9, 0, 7); ctx.clip(); ctx.drawImage(c.face, c.x - w / 2 + 3, ly - 9, 18, 18); ctx.restore(); }
-      ctx.fillStyle = c.flag ? GOLD : '#eef2ff'; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillText(label, c.x - w / 2 + 26, ly + 0.5);
+      ctx.fillStyle = c.flag ? GOLD : '#fff4de'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(label, c.x, ly + 0.5);
     }
     function rr(x, y, w, h, r) { ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
-    function shoot(t) {
-      for (var i = 0; i < 2; i++) { var ph = (t * 0.17 + i * 0.5) % 1.7; if (ph > 0.3) continue; var k = ph / 0.3, x = W * (0.9 - i * 0.35) - k * W * 0.4, y = H * (0.1 + i * 0.25) + k * H * 0.3, a = Math.sin(k * Math.PI);
-        var g = ctx.createLinearGradient(x, y, x + 120, y - 70); g.addColorStop(0, 'rgba(255,255,255,' + a + ')'); g.addColorStop(1, 'rgba(255,255,255,0)'); ctx.strokeStyle = g; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x + 120, y - 70); ctx.stroke(); }
-    }
     self.draw = function (t) {
-      t = t || 0; size(); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); bg(t); sunAndLanes(); shoot(t);
+      t = t || 0; size(); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); bg(t);
       coins.forEach(function (c) { place(c, T); });
       var order = coins.slice().sort(function (a, b) { return a.depth - b.depth; });
       order.forEach(function (c) { drawCoin(c, t); });
-      if (loaded && !coins.length) { ctx.fillStyle = 'rgba(238,242,255,.9)'; ctx.font = '600 18px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('The sky is empty. Launch the first ship.', W / 2, H / 2 + 80); }
+      if (loaded && !coins.length) { ctx.fillStyle = 'rgba(238,242,255,.9)'; ctx.font = '600 18px Inter, sans-serif'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText('The yard is empty. Launch the first pet.', W / 2, H / 2 + 80); }
       // hit test and tooltip
       var best = null, bd = 1e9; coins.forEach(function (c) { var d = Math.hypot(c.x - mx, c.y - my); if (d < 40 * (c.sc / 0.3 > 1.2 ? 1.2 : 1) && d < bd) { bd = d; best = c; } });
       if (best !== hover) { hover = best; cv.style.cursor = hover ? 'pointer' : 'default'; }

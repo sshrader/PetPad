@@ -10,13 +10,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#05060f;--surface:rgba(10,13,34,.9);--surface2:#0f1330;--line:#2b3166;--fg:#eef2ff;--dim:#aab6e8;--ember:#ff9a5c;--gold:#9d7bff;--good:#4de3ff;--sun:#ffd98a;--bad:#ff5d7a;
+:root{--bg:#1b1220;--surface:rgba(42,28,48,.9);--surface2:#2a1c34;--line:#5a3a58;--fg:#fff4de;--dim:#e0c8d0;--ember:#ff9a5c;--gold:#ff8a7a;--good:#ffc46b;--sun:#ffd98a;--bad:#ff5d7a;
 --display:'Space Grotesk','Inter',system-ui,sans-serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;color-scheme:dark}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.55;
 padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;image-rendering:pixelated;opacity:.7;pointer-events:none}
-.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(4,4,6,.7) 0%,rgba(4,4,6,.4) 50%,rgba(4,4,6,.15) 100%)}
+.veil{position:fixed;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(27,18,32,.7) 0%,rgba(27,18,32,.4) 50%,rgba(27,18,32,.15) 100%)}
 .wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding-block:24px 120px}
 a{color:var(--gold)}
 header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
@@ -36,7 +36,7 @@ h1{font-family:var(--sans);font-weight:800;font-size:clamp(30px,6vw,48px);line-h
 .desc{color:var(--dim);max-width:60ch;margin:8px 0 14px;overflow-wrap:anywhere}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .btn{font:700 14px var(--sans);border-radius:99px;padding:10px 18px;border:1px solid var(--line);background:var(--surface2);color:var(--fg);cursor:pointer;text-decoration:none;display:inline-block}
-.btn.go{background:var(--gold);color:#05060f;border:0}
+.btn.go{background:var(--gold);color:#1b1220;border:0}
 h2{font-family:var(--sans);font-weight:800;font-size:22px;margin:34px 0 12px;text-shadow:0 1px 0 #000}
 .tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 @media(max-width:700px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -45,7 +45,7 @@ h2{font-family:var(--sans);font-weight:800;font-size:22px;margin:34px 0 12px;tex
 .tile b{font:800 22px var(--sans);overflow-wrap:anywhere}
 .tile i{display:block;font:500 13px var(--sans);font-style:normal;color:var(--dim);margin-top:2px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
-.bar{height:16px;border:1px solid var(--line);border-radius:3px;background:#05060f;overflow:hidden}
+.bar{height:16px;border:1px solid var(--line);border-radius:3px;background:#1b1220;overflow:hidden}
 .bar>div{height:100%;background:linear-gradient(90deg,var(--ember),var(--gold))}
 .kv{display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:8px 14px;font-size:14px}
 @media(max-width:560px){.kv{grid-template-columns:minmax(0,1fr)}.kv dt{margin-top:6px}}
@@ -57,7 +57,7 @@ td{padding:8px;border-bottom:1px solid rgba(77,56,38,.5);vertical-align:middle}
 td.n{font-family:var(--mono);width:34px;color:var(--dim)}
 td.p{font-family:var(--mono);width:84px;text-align:right}
 td.b{width:34%}
-td .mini{height:8px;background:#05060f;border-radius:2px;overflow:hidden}
+td .mini{height:8px;background:#1b1220;border-radius:2px;overflow:hidden}
 td .mini>div{height:100%;background:var(--gold)}
 .heat{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px 20px;margin-top:22px}.heat .lab{font:400 13px var(--mono);letter-spacing:.08em;color:var(--dim)}.heat svg{width:30px;height:30px}.heat p{margin:0;flex:1 1 280px;min-width:0;color:var(--fg);font-size:15px}
 .tag{font:600 13px var(--mono);border:1px solid var(--line);border-radius:99px;padding:1px 7px;margin-left:6px;color:var(--dim)}
@@ -84,7 +84,7 @@ td .mini>div{height:100%;background:var(--gold)}
 [hidden]{display:none!important}
 .orbitbox canvas{display:block;width:100%;height:190px;border-radius:10px}
 .patchbox{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;align-items:center}
-.patchbox canvas{display:block;width:100%;height:auto;aspect-ratio:1;border-radius:50%}
+.patchbox canvas{display:block;width:100%;height:auto;aspect-ratio:1;border-radius:10px}
 @media(max-width:640px){.patchbox{grid-template-columns:1fr}.patchbox canvas{max-width:320px;margin:0 auto}}
 </style>
 </head>
@@ -111,15 +111,15 @@ td .mini>div{height:100%;background:var(--gold)}
     </div>
   </section>
 
-  <h2>Orbit tracker</h2>
-  <div class="panel orbitbox"><canvas id="orbit" aria-label="Orbit tracker: how far this coin has climbed its bonding curve"></canvas><div class="note" id="orbittxt"></div></div>
+  <h2>Adoption journey</h2>
+  <div class="panel orbitbox"><canvas id="orbit" aria-label="Adoption journey: how far this coin has climbed its bonding curve"></canvas><div class="note" id="orbittxt"></div></div>
 
-  <h2>Mission patch</h2>
+  <h2>Adoption certificate</h2>
   <div class="panel patchbox">
-    <canvas id="patch" aria-label="Mission patch for this coin"></canvas>
+    <canvas id="patch" aria-label="Adoption certificate for this coin"></canvas>
     <div class="patchside">
-      <p class="note" style="margin:0 0 12px">A round badge with this coin’s pet, rocket and callsign. Download it, then attach it to a post.</p>
-      <div class="row"><button class="btn go" id="pdl" type="button">Download patch</button><a class="btn" id="ptw" href="#" target="_blank" rel="noopener">Post on X</a></div>
+      <p class="note" style="margin:0 0 12px">A certificate with this coin’s pet, ride and name tag. Download it, then attach it to a post.</p>
+      <div class="row"><button class="btn go" id="pdl" type="button">Download certificate</button><a class="btn" id="ptw" href="#" target="_blank" rel="noopener">Post on X</a></div>
       <div class="note" id="pmsg" style="margin-top:8px"></div>
     </div>
   </div>
@@ -170,26 +170,26 @@ td .mini>div{height:100%;background:var(--gold)}
     document.title=j.name+' ($'+j.symbol+') · PetPad';
     if(j.quote){var fn=document.getElementById('finenote');if(fn)fn.textContent+=' This coin is priced in another coin ('+(j.quote==='SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb'?'SpaceX, SPCX':j.quote.slice(0,4)+'…'+j.quote.slice(-4))+'), not SOL, so the SOL figures above do not apply to it.'}
     var n=$('net');n.textContent=main?'mainnet':'devnet · test';n.className='net'+(main?' main':'');
-    $('pic').src=j.bear==='F'?'/api/founder.png?v=astro':'/api/preview/'+j.bear+'.png?v=astro';$('pic').alt=j.name;
+    $('pic').src=j.bear==='F'?'/api/founder.png?v=pets':'/api/preview/'+j.bear+'.png?v=pets';$('pic').alt=j.name;
     $('name').textContent=j.name;$('tick').textContent='$'+j.symbol;
     var chips=$('chips');chips.textContent='';
-    chips.appendChild(el('span','chip'+(j.founder?' good':''),j.founder?'Titan · flagship, one of one':((j.agent?j.agent.name+' · '+j.agent.role.toLowerCase():'Agent #'+String(j.bear).padStart(2,'0'))+' · '+String(j.bear).padStart(2,'0')+' of '+j.total)));
+    chips.appendChild(el('span','chip'+(j.founder?' good':''),j.founder?'Titan · flagship, one of one':((j.agent?j.agent.name+' · '+(j.agent.breed||j.agent.role.toLowerCase()):'Agent #'+String(j.bear).padStart(2,'0'))+' · '+String(j.bear).padStart(2,'0')+' of '+j.total)));
     chips.appendChild(el('span','chip'+(cv&&cv.complete?' good':''),cv?(cv.complete?'Graduated':'On the bonding curve'):'Curve not read'));
-    if(window.Ships&&j.ship){var sp=window.Ships.list.filter(function(x){return x.id===j.ship})[0];if(sp){var sc=el('span','chip');var cvs=document.createElement('canvas');cvs.style.cssText='width:24px;height:30px;vertical-align:middle;margin-right:6px';sc.appendChild(cvs);sc.appendChild(document.createTextNode('Launched in the '+sp.name));chips.appendChild(sc);window.Ships.thumb(cvs,sp.id,j.look,null)}}
-    if(j.look&&j.look.call)chips.appendChild(el('span','chip good','Callsign · '+j.look.call));
+    if(window.Ships&&j.ship){var sp=window.Ships.list.filter(function(x){return x.id===j.ship})[0];if(sp){var sc=el('span','chip');var cvs=document.createElement('canvas');cvs.style.cssText='width:40px;height:30px;vertical-align:middle;margin-right:6px';sc.appendChild(cvs);sc.appendChild(document.createTextNode('Rides in the '+sp.name));chips.appendChild(sc);var cf=new Image(),dr2=function(){window.Ships.thumb(cvs,sp.id,j.look,null,cf)};cf.onload=dr2;cf.src=j.bear==='F'?'/api/founder.png?v=pets':'/api/preview/'+j.bear+'.png?v=pets';dr2()}}
+    if(j.look&&j.look.call)chips.appendChild(el('span','chip good','Name tag · '+j.look.call));
     $('desc').textContent=j.description||'';
     var ab=$('agentbox');ab.textContent='';
     if(j.agent){
-      var wh=el('div','who');wh.appendChild(el('b',null,j.agent.name));wh.appendChild(el('span','role',j.agent.role));ab.appendChild(wh);
+      var wh=el('div','who');wh.appendChild(el('b',null,j.agent.name));wh.appendChild(el('span','role',j.agent.breed||j.agent.role));ab.appendChild(wh);
       if(j.agent.blurb)ab.appendChild(el('p','blurb',j.agent.blurb));
       
     }
     if(j.report){
       var warns=j.report.lines.filter(function(l){return l.level==='warn'}).length,heat=Math.min(5,1+warns),hb=$('heat');hb.textContent='';
-      var hl=el('span','lab','TURBULENCE');hb.appendChild(hl);var NS='http://www.w3.org/2000/svg';
-      for(var si=0;si<5;si++){var sv=document.createElementNS(NS,'svg');sv.setAttribute('viewBox','0 0 16 16');sv.setAttribute('aria-hidden','true');var pg=document.createElementNS(NS,'polygon');pg.setAttribute('points','8,1 10,6 15.5,6 11,9.5 12.8,15 8,11.6 3.2,15 5,9.5 .5,6 6,6');pg.setAttribute('fill',si<heat?'#ff4fd8':'#2a2548');sv.appendChild(pg);hb.appendChild(sv)}
-      hb.setAttribute('role','img');hb.setAttribute('aria-label','Turbulence level '+heat+' of 5');
-      hb.appendChild(el('p',null,warns?(warns===1?'One thing is flagged, so this coin is a little bumpy.':warns+' things are flagged, so this coin is rough going.'):'Nothing is flagged, so the turbulence stays at the minimum.'));hb.hidden=false;
+      var hl=el('span','lab','WORRY LEVEL');hb.appendChild(hl);var NS='http://www.w3.org/2000/svg';
+      for(var si=0;si<5;si++){var sv=document.createElementNS(NS,'svg');sv.setAttribute('viewBox','0 0 16 16');sv.setAttribute('aria-hidden','true');var pg=document.createElementNS(NS,'polygon');pg.setAttribute('points','8,1 10,6 15.5,6 11,9.5 12.8,15 8,11.6 3.2,15 5,9.5 .5,6 6,6');pg.setAttribute('fill',si<heat?'#ff6f8a':'#2a2548');sv.appendChild(pg);hb.appendChild(sv)}
+      hb.setAttribute('role','img');hb.setAttribute('aria-label','Worry level '+heat+' of 5');
+      hb.appendChild(el('p',null,warns?(warns===1?'One thing is flagged, so this coin needs a little watching.':warns+' things are flagged, so this coin needs close watching.'):'Nothing is flagged, so the worry level stays at the minimum.'));hb.hidden=false;
       ab.appendChild(el('p','head'+(j.report.status==='attention'?' attention':''),j.report.headline));
       var ul=el('ul');j.report.lines.forEach(function(l){var li=el('li',l.level);li.appendChild(el('i',null,l.level==='warn'?'!':l.level==='good'?'+':'>'));li.appendChild(el('span',null,l.text));ul.appendChild(li)});ab.appendChild(ul);
       if(j.report.ability){var A=j.report.ability,ad=el('div','abil');ad.appendChild(el('h3',null,'Special ability: '+A.name));ad.appendChild(el('p','does',A.does));
@@ -215,18 +215,18 @@ td .mini>div{height:100%;background:var(--gold)}
     if(cv){$('curvebar').style.width=cv.progress+'%';$('curvetxt').textContent=cv.complete?'Complete: moved to a DEX':cv.progress.toFixed(1)+'% filled'}
     (function(){
       if(!window.Mission||!window.Ships)return;
-      var shipId=j.ship||'nova',look=j.look||null,logo=null,face=null,done=!!(cv&&cv.complete);
+      var shipId=j.ship||'van',look=j.look||null,logo=null,face=null,done=!!(cv&&cv.complete);
       if(!mission.orbit){
-        logo=new Image();if(j.logo)logo.src=j.logo;face=new Image();face.src=j.bear==='F'?'/api/founder.png?v=astro':'/api/preview/'+j.bear+'.png?v=astro';
-        mission.orbit=new window.Mission.Orbit($('orbit'),{ship:shipId,look:look,logo:logo});mission.orbit.start();
-        var draw=function(){window.Mission.drawPatch($('patch'),{sym:j.symbol,name:j.name,call:look&&look.call,agent:j.agent&&j.agent.name,role:j.agent&&j.agent.role,face:face,ship:shipId,look:look,logo:logo,mint:mint})};
+        logo=new Image();if(j.logo&&j.customLogo)logo.src=j.logo;face=new Image();face.src=j.bear==='F'?'/api/founder.png?v=pets':'/api/preview/'+j.bear+'.png?v=pets';
+        mission.orbit=new window.Mission.Orbit($('orbit'),{ship:shipId,look:look,logo:logo,face:face});mission.orbit.start();
+        var draw=function(){window.Mission.drawPatch($('patch'),{sym:j.symbol,name:j.name,breed:j.agent&&j.agent.breed,charity:j.charity&&j.charity.name,call:look&&look.call,agent:j.agent&&j.agent.name,role:j.agent&&j.agent.role,face:face,ship:shipId,look:look,logo:logo,mint:mint})};
         logo.onload=draw;face.onload=draw;draw();
-        $('pdl').addEventListener('click',function(){try{$('patch').toBlob(function(b){var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='petpad-'+String(j.symbol).toLowerCase()+'-patch.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);$('pmsg').textContent='Saved. Attach it to your post.'})}catch(e){$('pmsg').textContent='Could not make the image in this browser.'}});
-        var txt='$'+j.symbol+' just launched on PetPad'+(look&&look.call?' with callsign '+look.call:'')+'. Mission patch attached.',url=location.origin+'/coin/'+mint;
+        $('pdl').addEventListener('click',function(){try{$('patch').toBlob(function(b){var u=URL.createObjectURL(b),a=document.createElement('a');a.href=u;a.download='petpad-'+String(j.symbol).toLowerCase()+'-adoption.png';document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(u)},4000);$('pmsg').textContent='Saved. Attach it to your post.'})}catch(e){$('pmsg').textContent='Could not make the image in this browser.'}});
+        var txt='$'+j.symbol+' just launched on PetPad'+(look&&look.call?' with the name tag '+look.call:'')+'. Adoption certificate attached.',url=location.origin+'/coin/'+mint;
         $('ptw').href='https://x.com/intent/post?text='+encodeURIComponent(txt)+'&url='+encodeURIComponent(url);
       }
       mission.orbit.set(cv?cv.progress:0,done);
-      $('orbittxt').textContent=cv?(done?'This coin filled its curve and moved to a DEX: the rocket made it to orbit.':window.Mission.stageName(cv.progress,false)+'. The rocket reaches orbit when the curve is 100% filled.'):'The curve has not been read yet, so the rocket waits on the pad.';
+      $('orbittxt').textContent=cv?(done?'This coin filled its curve and moved to a DEX: the pet found its forever home.':window.Mission.stageName(cv.progress,false)+'. The pet reaches its forever home when the curve is 100% filled.'):'The curve has not been read yet, so the pet waits at the shelter.';
     })();
 
     var H=$('holders');H.textContent='';

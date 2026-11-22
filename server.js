@@ -211,7 +211,7 @@ function bearsState(res) {
     const ag = art.agentFor(i, imageSecret());
     bears.push({ n: i + 1, agent: { name: ag.name, role: ag.role, blurb: ag.blurb, ability: ag.ability, breed: ag.breed }, state: L ? 'launched' : H ? 'held' : 'open', symbol: L ? L.symbol : null, name: L ? L.name : null, mint: L ? L.mint : null, dev: L ? L.wallet : null, split: L ? !!L.split : false });
   }
-  const recent = Object.keys(d.launched).map((k) => ({ bear: k === 'F' ? 'F' : Number(k) + 1, agent: k === 'F' ? PRIME.name : art.agentFor(Number(k), imageSecret()).name, name: d.launched[k].name, symbol: d.launched[k].symbol, mint: d.launched[k].mint, at: d.launched[k].at, ship: d.launched[k].ship || 'nova', look: d.launched[k].look || null, logo: d.launched[k].logo || '', call: (d.launched[k].look && d.launched[k].look.call) || '' }))
+  const recent = Object.keys(d.launched).map((k) => ({ bear: k === 'F' ? 'F' : Number(k) + 1, agent: k === 'F' ? PRIME.name : art.agentFor(Number(k), imageSecret()).name, name: d.launched[k].name, symbol: d.launched[k].symbol, mint: d.launched[k].mint, at: d.launched[k].at, ship: d.launched[k].ship || 'van', look: d.launched[k].look || null, logo: d.launched[k].logo || '', custom: !!d.launched[k].custom, call: (d.launched[k].look && d.launched[k].look.call) || '' }))
     .sort((x, y) => y.at - x.at).slice(0, 24);
   send(res, 200, {
     cluster: c.cluster, pairs: pairsOn(), total: c.total, maxBuy: c.maxBuy, silhouette: art.silhouette(), bears, recent,
@@ -348,7 +348,7 @@ function validLook(v) {
   return { hull: idx(v.hull, SHIPS.HULLS.length), accent: idx(v.accent, SHIPS.ACCENTS.length), suit: idx(v.suit, SHIPS.SUITS.length), call: badWords(call) ? '' : call };
 }
 function suitHex(look) { return look && SHIPS.SUITS[look.suit] ? SHIPS.SUITS[look.suit][1] : ''; }
-function validShip(v) { return SHIPS.isShip(text(v, 20)) ? text(v, 20) : 'nova'; }
+function validShip(v) { return SHIPS.isShip(text(v, 20)) ? text(v, 20) : 'van'; }
 
 // Step 3 (after the launch lands): the server checks the transaction on the chain, then locks the bear to the coin.
 async function launched(req, res) {
@@ -417,7 +417,7 @@ async function coinInfo(res, mint, fast) {
   const agent = f.slot === 'F' ? { name: PRIME.name, role: PRIME.role, blurb: PRIME.blurb, ability: PRIME.ability } : (({ name, role, blurb, ability, breed }) => ({ name, role, blurb, ability, breed }))(art.agentFor(f.slot, imageSecret()));
   send(res, 200, {
     cluster: c.cluster, mint, bear: f.slot === 'F' ? 'F' : f.slot + 1, founder: !!f.rec.founder, total: c.total, name: f.rec.name, symbol: f.rec.symbol, dev: f.rec.wallet,
-    launchedAt: f.rec.at, signature: f.rec.signature, quote: f.rec.quote || '', ship: f.rec.ship || 'nova', look: f.rec.look || null, logo: f.rec.logo ? '/images/' + f.rec.logo + '.png' : '', customLogo: !!f.rec.custom, feeSplit: !!f.rec.split, charity: f.rec.split && f.rec.charity ? f.rec.charity : null, platformBps: c.platformWallet ? PLATFORM_BPS : 0,
+    launchedAt: f.rec.at, signature: f.rec.signature, quote: f.rec.quote || '', ship: f.rec.ship || 'van', look: f.rec.look || null, logo: f.rec.logo ? '/images/' + f.rec.logo + '.png' : '', customLogo: !!f.rec.custom, feeSplit: !!f.rec.split, charity: f.rec.split && f.rec.charity ? f.rec.charity : null, platformBps: c.platformWallet ? PLATFORM_BPS : 0,
     description: meta.description || '', twitter: meta.twitter || '', website: meta.website || '', onchain,
     agent, report: statusReport(agent, { launchedAt: f.rec.at, symbol: f.rec.symbol }, onchain, Date.now(), watchLoad(c).d[mint] || null),
   });
